@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class Death : MonoBehaviour
 {
     [SerializeField] Animator anim;
+
+    bool isHit = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,21 +21,20 @@ public class Death : MonoBehaviour
         
     }
 
-    /*IEnumerator fadeRed()
+    IEnumerator Die()
     {
-        anim.SetTrigger("fadeOut");
-    }*/
-
-    void PlayerDeath(int sceneIndex)
-    {
+        anim.SetTrigger("fadeRedIn");
+        yield return new WaitForSeconds(1);
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         //SceneManager.LoadScene(sceneIndex);
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject.name == "Cube")
-        {
-            PlayerDeath(2);
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        if(hit.collider.gameObject.CompareTag("Death") && !isHit) {
+            isHit = true;
+            StartCoroutine(Die());
+        } else if(!hit.collider.gameObject.CompareTag("Death") && isHit) {
+            isHit = false;
         }
     }
 }
