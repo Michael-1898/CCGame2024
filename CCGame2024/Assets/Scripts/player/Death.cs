@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Death : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    [SerializeField] Animator textAnim;
+    [SerializeField] Animator buttonAnim;
 
     bool isHit = false;
 
@@ -23,10 +25,18 @@ public class Death : MonoBehaviour
 
     IEnumerator Die()
     {
+        //red fade
         anim.SetTrigger("fadeRedIn");
         yield return new WaitForSeconds(1);
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //SceneManager.LoadScene(sceneIndex);
+        
+        //text fade
+        textAnim.SetTrigger("FadeDeathTextIn");
+        yield return new WaitForSeconds(1);
+    
+        //button fade
+        buttonAnim.SetTrigger("FadeButtonIn");
+        yield return new WaitForSeconds(1);
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
