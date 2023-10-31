@@ -4,60 +4,30 @@ using UnityEngine;
 
 public class MikeMovement : MonoBehaviour
 {
-    public float moveSmoothTime;
-    public float gravityStrength;
-    public float jumpStrength;
-    public float walkSpeed;
-
-    private CharacterController Controller;
-    private Vector3 currentMoveVelocity;
-    private Vector3 moveDampVelocity;
-        
-    private Vector3 currentForceVelocity;
+    //base movement
+    private float verticalInput;
+    private float horizontalInput;
+    [SerializeField] float moveSpeed;
+    [SerializeField] Rigidbody2D rb;
+    private Vector3 currentVelocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        Controller = GetComponent<CharacterController>();
         Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 playerInput = new Vector3 {
+        verticalInput = Input.GetAxis("vertical");
+        horizontalInput = Input.GetAxis("horizontal");
 
-            x = Input.GetAxisRaw("Horizontal"),
-            y = 0f,
-            z = Input.GetAxisRaw("Vertical") 
-        };
+        currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
+    }
 
-        if (playerInput.magnitude > 1f) {
-            playerInput.Normalize();
-        }
-
-        Vector3 moveVector = transform.TransformDirection(playerInput);
-        float currentSpeed = walkSpeed;
-
-        currentMoveVelocity = Vector3.SmoothDamp(currentMoveVelocity, moveVector * currentSpeed, ref moveDampVelocity, moveSmoothTime);
-
-        Controller.Move(currentMoveVelocity * Time.deltaTime);
-
-        //jumping
-        Ray groundCheckRay = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(groundCheckRay, 1.25f)) {
-            
-            currentForceVelocity.y = -2f;
-
-            if (Input.GetKey(KeyCode.Space)) {
-                currentForceVelocity.y = jumpStrength;
-            }
-        }
-        else
-        {
-            currentForceVelocity.y -= gravityStrength * Time.deltaTime;
-        }
-
-        Controller.Move(currentForceVelocity * Time.deltaTime);
+    void FixedUpdate()
+    {
+        rb.velocity = currentVelocity;
     }
 }
