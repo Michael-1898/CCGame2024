@@ -8,13 +8,17 @@ public class Death : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] Animator textAnim;
     [SerializeField] Animator buttonAnim;
+    [SerializeField] Animator button2Anim;
+    [SerializeField] GameObject buttonRespawn;
+    [SerializeField] GameObject buttonMainMenu;
 
     bool isHit = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        buttonMainMenu.SetActive(false);
+        buttonRespawn.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,8 +39,10 @@ public class Death : MonoBehaviour
         yield return new WaitForSeconds(1);
     
         //button fade
+        buttonMainMenu.SetActive(true);
+        buttonRespawn.SetActive(true);
         buttonAnim.SetTrigger("FadeButtonIn");
-        yield return new WaitForSeconds(1);
+        button2Anim.SetTrigger("FadeButtonIn");
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
