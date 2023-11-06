@@ -8,7 +8,7 @@ public class MikeMovement : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
     [SerializeField] float moveSpeed;
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Rigidbody rb;
     private Vector3 currentVelocity;
 
     // Start is called before the first frame update
@@ -20,14 +20,17 @@ public class MikeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        verticalInput = Input.GetAxis("vertical");
-        horizontalInput = Input.GetAxis("horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
 
         currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
     }
 
     void FixedUpdate()
     {
+        currentVelocity *= moveSpeed;
+        currentVelocity *= Time.deltaTime;
+        currentVelocity.y = rb.velocity.y;
         rb.velocity = currentVelocity;
     }
 }
