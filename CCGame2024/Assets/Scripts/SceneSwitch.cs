@@ -20,6 +20,11 @@ public class SceneSwitch : MonoBehaviour
         
     }
 
+    public void switchScene(int transitionIndex)
+    {
+        StartCoroutine(FadeOut());
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("Player"))
