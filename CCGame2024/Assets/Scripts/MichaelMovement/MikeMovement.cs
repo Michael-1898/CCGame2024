@@ -32,6 +32,8 @@ public class MikeMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
+        currentVelocity = currentVelocity * moveSpeed;
+        currentVelocity.y = rb.velocity.y;
 
         //ground check switches value of isGrounded variable
         GroundCheck();
@@ -41,14 +43,12 @@ public class MikeMovement : MonoBehaviour
             Jump();
         }
 
-        currentVelocity = currentVelocity * moveSpeed * Time.deltaTime;
-        currentVelocity.y = rb.velocity.y;
-        rb.velocity = currentVelocity;
+        
     }
 
     void FixedUpdate()
     {
-        
+        rb.velocity = currentVelocity;
     }
 
     void Jump()
