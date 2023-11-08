@@ -7,10 +7,18 @@ public class CarMovement : MonoBehaviour
     [SerializeField] Light headRight;
     [SerializeField] Light headLeft;
     [SerializeField] int carSpeed;
+    [SerializeField] Animator carMove;
+    AnimatorStateInfo animStateInfo;
+    GameObject player;
+    Animator playerAnim;
+    public float Ntime;
+
     bool carGo;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerAnim = player.GetComponent<Animator>();
         headRight.enabled = false;
         headLeft.enabled = false;
         carGo = false;
@@ -20,13 +28,25 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(carGo);
+        //print(carGo);
         if(carGo)
         {
             headRight.enabled = true;
             headLeft.enabled = true;
-            transform.Translate(Vector3.right * Time.deltaTime * carSpeed);
+            carMove.SetTrigger("carDrive");
+            animStateInfo = carMove.GetCurrentAnimatorStateInfo (0);
+            Ntime = animStateInfo.normalizedTime;
+            if(Ntime > 1.0f)
+            {
+                playerDodge();
+            }
         }
+
+    }
+
+    void playerDodge()
+    {
+        playerAnim.SetTrigger("playerRoll");
     }
 
     IEnumerator carStart()
