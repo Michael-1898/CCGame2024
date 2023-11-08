@@ -7,11 +7,12 @@ public class SceneSwitch : MonoBehaviour
 {
     [SerializeField] int transitionToIndex;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject fade;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        fade.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,7 +36,9 @@ public class SceneSwitch : MonoBehaviour
 
     IEnumerator FadeOut()
     {
+        fade.SetActive(true);
         anim.SetTrigger("fadeOut");
+        //buttonAnim.SetTrigger("buttonFadeIn");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(transitionToIndex);
     }
