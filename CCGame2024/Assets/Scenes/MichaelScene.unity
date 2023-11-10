@@ -931,14 +931,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e414c29c2bb4041a6f7b54d5963adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 10
   rb: {fileID: 1886867281}
-  jumpForce: 17
+  jumpForce: 6
   groundCheck: {fileID: 168814100}
   groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 16
+  coyoteJumpTime: 0.13
 --- !u!114 &1886867287
 MonoBehaviour:
   m_ObjectHideFlags: 0

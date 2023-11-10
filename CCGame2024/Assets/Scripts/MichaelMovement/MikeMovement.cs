@@ -18,6 +18,9 @@ public class MikeMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
+    //coyote jump
+    bool canJump;
+    [SerializeField] float coyoteJumpTime;
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +36,12 @@ public class MikeMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
         currentVelocity = currentVelocity * moveSpeed;
-        currentVelocity.y = rb.velocity.y;
 
-        //ground check switches value of isGrounded variable
+        //ground check switches value of isGrounded and canJump variable
         GroundCheck();
 
         //get jump input
-        if(Input.GetKeyDown("space") && isGrounded) {
+        if(Input.GetKeyDown("space") && isGrounded && canJump) {
             Jump();
         }
 
@@ -48,22 +50,34 @@ public class MikeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = currentVelocity;
+        rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z);
     }
 
     void Jump()
     {
+        rb.velocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        canJump = false;
     }
 
     void GroundCheck()
     {
         groundColliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
         if(groundColliders.Length == 0 && isGrounded) {
+            //in air
             isGrounded = false;
-        } else if(groundColliders.Length != 0 && !isGrounded) {
+            StartCoroutine(CoyoteJump());
+        } else if(groundColliders.Length != 0 && (!isGrounded || !canJump)) {
+            //on ground
             isGrounded = true;
+            canJump = true;
         }
+    }
+
+    IEnumerator CoyoteJump()
+    {
+        yield return new WaitForSeconds(coyoteJumpTime);
+        canJump = false;
     }
 
     void OnDrawGizmosSelected()
