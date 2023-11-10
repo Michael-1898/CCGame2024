@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Respawn : MonoBehaviour
+public class CameraAnim : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,10 +14,5 @@ public class Respawn : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void Spawn(int sceneIndex)
-    {
-        SceneManager.LoadScene(sceneIndex);
     }
 }
