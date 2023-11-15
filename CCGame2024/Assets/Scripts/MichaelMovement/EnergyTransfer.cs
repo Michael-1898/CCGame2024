@@ -8,7 +8,7 @@ public class EnergyTransfer : MonoBehaviour
     float currentYPosition;
     [SerializeField] Rigidbody rb;
     float velocityScalar;
-    Vector3 currentVelocity; 
+    Vector3 currentVelocity;
 
     void Awake()
     {
