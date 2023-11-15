@@ -25,13 +25,12 @@ public class MikeMovement : MonoBehaviour
     //energy conversion
     float lastYPosition;
     float currentYPosition;
-    float velocityScalar;
+    float velocityScalar = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
-        lastYPosition = transform.position.y;
     }
 
     // Update is called once per frame
@@ -40,7 +39,15 @@ public class MikeMovement : MonoBehaviour
         currentYPosition = transform.position.y;
         currentVelocity = rb.velocity;
 
-        EnergyConservation();
+        // print(lastYPosition);
+        // print(currentYPosition);
+
+        //ground check switches value of isGrounded and canJump variable
+        GroundCheck();
+
+        if(isGrounded && rb.velocity.magnitude > 0.05) {
+            EnergyConservation();
+        }
         //calculate the change in y pos
         //calculate the change in potential energy
         //change in potential energy = change in kinetic energy
@@ -52,45 +59,45 @@ public class MikeMovement : MonoBehaviour
         currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
         currentVelocity = currentVelocity * moveSpeed;
 
-        //ground check switches value of isGrounded and canJump variable
-        GroundCheck();
-
         //get jump input
         if(Input.GetKeyDown("space") && isGrounded && canJump) {
             Jump();
         }
-
-        
     }
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z);
+        rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z) * velocityScalar;
     }
 
-    void LateUpdate()
-    {
-        lastYPosition = currentYPosition;
-    }
+    // void LateUpdate()
+    // {
+    //     lastYPosition = currentYPosition;
+    // }
 
     void EnergyConservation()
     {
         float deltaY = currentYPosition - lastYPosition;
+        //print(deltaY);
         // if(Mathf.Approximately(deltaY, 0)) {
         //     deltaY = 0;
         // }
-        float deltaU = rb.mass * 9.8f * deltaY;
+        float deltaU = rb.mass * -9.8f * deltaY;
+        //print(deltaU);
         
         //k = (1/2)m(v^2)
         //v = sqrt(2k/m)
         float deltaV = Mathf.Sqrt((2 * Mathf.Abs(deltaU)) / rb.mass);
-        if(deltaU > 0) {
+        if(deltaU < 0) {
             deltaV *= -1;
         }
+        //print(deltaV);
+        //print(rb.velocity.magnitude);
         
         //oldV * vScalar = newV
         //vScalar = newV/oldV
         velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
+        //print("scalar" + velocityScalar);
     }
 
     void Jump()
@@ -111,6 +118,7 @@ public class MikeMovement : MonoBehaviour
             //on ground
             isGrounded = true;
             canJump = true;
+            lastYPosition = transform.position.y;
         }
     }
 
