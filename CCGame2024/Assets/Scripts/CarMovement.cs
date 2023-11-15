@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class CarMovement : MonoBehaviour
 {
+    [SerializeField] float slowTime;
     [SerializeField] Light headRight;
     [SerializeField] Light headLeft;
+    [SerializeField] Light moonLight;
     [SerializeField] int carSpeed;
     [SerializeField] Animator carMove;
     AnimatorStateInfo animStateInfo;
@@ -16,9 +18,12 @@ public class CarMovement : MonoBehaviour
     public float Ntime;
 
     bool carGo;
+    bool carStart;
+    bool isSlowed;
     // Start is called before the first frame update
     void Start()
     {
+
         Time.timeScale = 1.0f;
         dodgeText = GameObject.Find("Dodge Text");
         player = GameObject.Find("Player");
@@ -26,8 +31,11 @@ public class CarMovement : MonoBehaviour
         dodgeText.GetComponent<Text>().enabled = false;
         headRight.enabled = false;
         headLeft.enabled = false;
+        moonLight.enabled = false;
         carGo = false;
-        StartCoroutine(carStart());
+        carStart = false;
+        isSlowed = false;
+        StartCoroutine(carDrive());
     }
 
     // Update is called once per frame
@@ -36,24 +44,25 @@ public class CarMovement : MonoBehaviour
         //print(carGo);
         if(carGo)
         {
-            print(carMove.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            //print(carMove.GetCurrentAnimatorStateInfo(0).normalizedTime);
             headRight.enabled = true;
             headLeft.enabled = true;
             carMove.SetTrigger("carDrive");
-            //animStateInfo = carMove.GetCurrentAnimatorStateInfo(0);
-            //Ntime = animStateInfo.normalizedTime;
-            if(carMove.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.22f)
+            if(carStart)
             {
-                print("slow down");
-                Time.timeScale = 0.1f;
-                dodgeText.GetComponent<Text>().enabled = true;
-                if(Input.GetKeyDown("q"))
-                {
-                    Time.timeScale = 1.0f;
-                    dodgeText.GetComponent<Text>().enabled = false;
-                    playerDodge();
-                }
+                StartCoroutine(carSlow());
+                carStart = false;
             }
+
+            if(Input.GetKeyDown("q") && isSlowed)
+            {
+                Time.timeScale = 1.0f;
+                dodgeText.GetComponent<Text>().enabled = false;
+                playerDodge();
+                moonLight.enabled = true;
+                isSlowed = false;
+            }
+        
         }
 
     }
@@ -63,10 +72,20 @@ public class CarMovement : MonoBehaviour
         playerAnim.SetTrigger("playerRoll");
     }
 
-    IEnumerator carStart()
+    IEnumerator carDrive()
     {
         yield return new WaitForSeconds(1);
         carGo = true;
+        carStart = true;
+    }
+
+    IEnumerator carSlow()
+    {
+        yield return new WaitForSeconds(slowTime);
+        print("slow down");
+        Time.timeScale = 0.01f;
+        dodgeText.GetComponent<Text>().enabled = true;
+        isSlowed = true;
     }
 
     

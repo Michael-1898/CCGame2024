@@ -363,8 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47560c921703f2b48a0d2634f104d5f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowTime: 0.25
   headRight: {fileID: 1688629817}
   headLeft: {fileID: 416057825}
+  moonLight: {fileID: 1748526678}
   carSpeed: 15
   carMove: {fileID: 238371471}
   Ntime: 0
@@ -468,17 +470,17 @@ PrefabInstance:
     - target: {fileID: 6229507765613291386, guid: 421045b8a6d23d14993a147665fddfe8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41.86
+      value: -41.8575
       objectReference: {fileID: 0}
     - target: {fileID: 6229507765613291386, guid: 421045b8a6d23d14993a147665fddfe8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.98766
       objectReference: {fileID: 0}
     - target: {fileID: 6229507765613291386, guid: 421045b8a6d23d14993a147665fddfe8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -92.2
+      value: -81.11
       objectReference: {fileID: 0}
     - target: {fileID: 6229507765613291386, guid: 421045b8a6d23d14993a147665fddfe8,
         type: 3}
@@ -1022,6 +1024,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lamppost2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7938203568261998271, guid: 35928dca700faab4fa002e6b350d4d09,
         type: 3}
@@ -1739,7 +1746,7 @@ PrefabInstance:
     - target: {fileID: 2986201423482995054, guid: 492d6287436a76a4081a635a597266ae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -65.82
+      value: -57.6
       objectReference: {fileID: 0}
     - target: {fileID: 2986201423482995054, guid: 492d6287436a76a4081a635a597266ae,
         type: 3}
