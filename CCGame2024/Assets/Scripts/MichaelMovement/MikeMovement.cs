@@ -75,18 +75,13 @@ public class MikeMovement : MonoBehaviour
         rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
     }
 
-    // void LateUpdate()
-    // {
-    //     lastYPosition = currentYPosition;
-    // }
-
     void EnergyConservation()
     {
         float deltaY = currentYPosition - lastYPosition;
-        //print(deltaY);
-        // if(Mathf.Approximately(deltaY, 0)) {
-        //     deltaY = 0;
-        // }
+        //deltaY is having too quick of an effect, so gonna divide by a number so it increases at a lower rate
+        //different number to divide by depending on whether or not deltaY is negative or positive may be good idea
+        deltaY /= 4;
+
         float deltaU = rb.mass * 9.8f * deltaY;
         //print(deltaU);
         
@@ -103,6 +98,8 @@ public class MikeMovement : MonoBehaviour
         //oldV * vScalar = newV
         //vScalar = newV/oldV
         velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
+        //clamp velocity scalar
+        velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
         print("scalar" + velocityScalar);
     }
 
