@@ -45,6 +45,11 @@ public class MikeMovement : MonoBehaviour
         //ground check switches value of isGrounded and canJump variable
         GroundCheck();
 
+        if(rb.velocity.magnitude < 0.05) {
+            lastYPosition = transform.position.y;
+            print("new y pos");
+        }
+
         if(isGrounded && rb.velocity.magnitude > 0.05) {
             EnergyConservation();
         }
@@ -67,7 +72,7 @@ public class MikeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z) * velocityScalar;
+        rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
     }
 
     // void LateUpdate()
@@ -82,13 +87,14 @@ public class MikeMovement : MonoBehaviour
         // if(Mathf.Approximately(deltaY, 0)) {
         //     deltaY = 0;
         // }
-        float deltaU = rb.mass * -9.8f * deltaY;
+        float deltaU = rb.mass * 9.8f * deltaY;
         //print(deltaU);
         
+        //negative U = positive k
         //k = (1/2)m(v^2)
         //v = sqrt(2k/m)
         float deltaV = Mathf.Sqrt((2 * Mathf.Abs(deltaU)) / rb.mass);
-        if(deltaU < 0) {
+        if(deltaU > 0) {
             deltaV *= -1;
         }
         //print(deltaV);
@@ -97,7 +103,7 @@ public class MikeMovement : MonoBehaviour
         //oldV * vScalar = newV
         //vScalar = newV/oldV
         velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
-        //print("scalar" + velocityScalar);
+        print("scalar" + velocityScalar);
     }
 
     void Jump()
@@ -119,6 +125,7 @@ public class MikeMovement : MonoBehaviour
             isGrounded = true;
             canJump = true;
             lastYPosition = transform.position.y;
+            print("new y pos");
         }
     }
 
