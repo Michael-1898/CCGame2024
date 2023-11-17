@@ -23,22 +23,23 @@ public class Checkpoint : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         
-        print("collision");
         if (col.gameObject.tag == "Respawn" && dieOnFall == true)
         {
-            print("collision2");
             transform.position = position;
         }
     }
 
     void OnTriggerEnter(Collider col)
     {
-        print("trigger");
         if (col.gameObject.tag == "Checkpoint")
         {
-            print("trigger2");
             position = col.transform.position;
             dieOnFall = true;
+        }
+
+        if (col.gameObject.tag == "CheckpointReset")
+        {
+            dieOnFall = false;
         }
     }
 }
