@@ -95,12 +95,16 @@ public class PickupClass : MonoBehaviour
             }
         }
 
+
+    }
+
+    void FixedUpdate()
+    {
         if(CurrentObjectRigidbody) 
         {
             CurrentObjectRigidbody.position = Hand.position;
             CurrentObjectRigidbody.rotation = Hand.rotation;
         }
-
     }
 
 }
