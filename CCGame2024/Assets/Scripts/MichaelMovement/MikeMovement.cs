@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Slide Notes:
+-locks movement to direction the player was moving when they entered the slide
+-player can still look around, but moves in same direction
+-player can accelerate to even higher speeds than when running
+-player gets friction applied when they are touching ground
+-velocity/momentum is preserved when entering slide, p=mv
+
+General Notes:
+-increase gravity so that the player stays grounded, but set the gravity back to normal when they jump or fall
+-no gravity scale with rigidbody, so need to do manual gravity
+*/
+
 public class MikeMovement : MonoBehaviour
 {
     //base movement
@@ -27,6 +40,11 @@ public class MikeMovement : MonoBehaviour
     float currentYPosition;
     float velocityScalar = 1;
 
+    //gravity
+    [SerializeField] float groundGravityScale;
+    [SerializeField] float airGravityScale;
+    float gravityScalar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +65,7 @@ public class MikeMovement : MonoBehaviour
 
         if(rb.velocity.magnitude < 0.05) {
             lastYPosition = transform.position.y;
-            print("new y pos");
+            //print("new y pos");
         }
 
         if(isGrounded && rb.velocity.magnitude > 0.05) {
@@ -100,11 +118,12 @@ public class MikeMovement : MonoBehaviour
         velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
         //clamp velocity scalar
         velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
-        print("scalar" + velocityScalar);
+        //print("scalar" + velocityScalar);
     }
 
     void Jump()
     {
+        gravityScalar = airGravityScale;
         rb.velocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         canJump = false;
@@ -121,8 +140,9 @@ public class MikeMovement : MonoBehaviour
             //on ground
             isGrounded = true;
             canJump = true;
+            gravityScalar = groundGravityScale;
             lastYPosition = transform.position.y;
-            print("new y pos");
+            //print("new y pos");
         }
     }
 
@@ -130,6 +150,11 @@ public class MikeMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(coyoteJumpTime);
         canJump = false;
+    }
+
+    void ApplyGravity()
+    {
+        rb.AddForce(-transform.up * 9.81f * gravityScalar, ForceMode.Acceleration);
     }
 
     void OnDrawGizmosSelected()
