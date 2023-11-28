@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -213,7 +213,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &814642724
+--- !u!1 &1177112924
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,11 +221,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 814642729}
-  - component: {fileID: 814642728}
-  - component: {fileID: 814642727}
-  - component: {fileID: 814642726}
-  - component: {fileID: 814642725}
+  - component: {fileID: 1177112925}
+  m_Layer: 0
+  m_Name: pickupPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1177112925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177112924}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.046, y: 0.64, z: 2.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6916981411259222243}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1395895702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1395895706}
+  - component: {fileID: 1395895705}
+  - component: {fileID: 1395895704}
+  - component: {fileID: 1395895703}
+  - component: {fileID: 1395895707}
   m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
@@ -233,42 +263,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &814642725
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814642724}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &814642726
+--- !u!65 &1395895703
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814642724}
+  m_GameObject: {fileID: 1395895702}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &814642727
+--- !u!23 &1395895704
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814642724}
+  m_GameObject: {fileID: 1395895702}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -301,28 +315,44 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &814642728
+--- !u!33 &1395895705
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814642724}
+  m_GameObject: {fileID: 1395895702}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &814642729
+--- !u!4 &1395895706
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814642724}
+  m_GameObject: {fileID: 1395895702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3056689, y: 0.426, z: -0.96}
-  m_LocalScale: {x: 0.65851, y: 0.65851, z: 0.65851}
+  m_LocalPosition: {x: -8.607501, y: -0.09, z: 2.9513688}
+  m_LocalScale: {x: 0.8627763, y: 0.8627763, z: 0.8627763}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1395895707
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395895702}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1578396093
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1578396094
 Transform:
   m_ObjectHideFlags: 0
@@ -738,10 +768,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6916981411259222240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.614, z: 0}
+  m_LocalPosition: {x: 0, y: 0.614, z: 0.272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1578396094}
+  - {fileID: 1177112925}
   m_Father: {fileID: 6916981412779848480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -878,6 +909,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   coyoteJumpTime: 0.13
+  groundGravityScale: 0
+  airGravityScale: 0
 --- !u!54 &6916981412779848484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -992,17 +1025,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6916981412779848485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84dcfff43fbe3f946856f6c50c32b165, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f0f34614b1a483468099d4765c5f767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickupLayer:
+  pickupMask:
     serializedVersion: 2
     m_Bits: 1024
-  PlayerCamera: {fileID: 6916981411259222253}
-  PickupRange: 5
-  ThrowingForce: 30
-  Hand: {fileID: 1578396094}
-  CurrentGameObject: {fileID: 0}
+  playerCamera: {fileID: 6916981411259222253}
+  pickupTarget: {fileID: 1177112925}
+  pickupRange: 50
 --- !u!1001 &8230204949725346814
 PrefabInstance:
   m_ObjectHideFlags: 0
