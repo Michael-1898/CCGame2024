@@ -9,8 +9,9 @@ Slide Notes:
 -player can accelerate to even higher speeds than when running
 -player gets friction applied when they are touching ground
 -velocity/momentum is preserved when entering slide, p=mv
+-player presses slide key, start sliding, cotinue sliding until they either slow down enough, jump, or press the slide key again
 
-General Notes:
+Gravity Notes:
 -increase gravity so that the player stays grounded, but set the gravity back to normal when they jump or fall
 -no gravity scale with rigidbody, so need to do manual gravity
 */
@@ -49,11 +50,14 @@ public class MikeMovement : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        gravityScalar = airGravityScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ApplyGravity();
+
         currentYPosition = transform.position.y;
         currentVelocity = rb.velocity;
 
@@ -85,6 +89,10 @@ public class MikeMovement : MonoBehaviour
         //get jump input
         if(Input.GetKeyDown("space") && isGrounded && canJump) {
             Jump();
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift)) {
+            print("slide");
         }
     }
 
@@ -135,6 +143,7 @@ public class MikeMovement : MonoBehaviour
         if(groundColliders.Length == 0 && isGrounded) {
             //in air
             isGrounded = false;
+            gravityScalar = airGravityScale;
             StartCoroutine(CoyoteJump());
         } else if(groundColliders.Length != 0 && (!isGrounded || !canJump)) {
             //on ground
@@ -154,7 +163,7 @@ public class MikeMovement : MonoBehaviour
 
     void ApplyGravity()
     {
-        rb.AddForce(-transform.up * 9.81f * gravityScalar, ForceMode.Acceleration);
+        rb.AddForce(Physics.gravity * gravityScalar, ForceMode.Acceleration);
     }
 
     void OnDrawGizmosSelected()
