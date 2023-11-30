@@ -20,20 +20,20 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.16394626, g: 0.15445887, b: 0.3679245, a: 1}
-  m_AmbientEquatorColor: {r: 0.24110003, g: 0.24730508, b: 0.3962264, a: 1}
+  m_AmbientSkyColor: {r: 0.03355287, g: 0.03355287, b: 0.24528301, a: 1}
+  m_AmbientEquatorColor: {r: 0.1308295, g: 0.15258978, b: 0.5660378, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a598a50a9109c6444be082241c7512fe, type: 2}
-  m_HaloStrength: 0.5
+  m_SkyboxMaterial: {fileID: 2100000, guid: a43df67675e5bd04ca65fe69b9bb8739, type: 2}
+  m_HaloStrength: 0.501
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 512
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -58,7 +58,7 @@ LightmapSettings:
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
-    m_AO: 0
+    m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
@@ -181,13 +181,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.39215687, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 478790526}
   - component: {fileID: 478790525}
   m_Layer: 0
-  m_Name: PPtest
+  m_Name: PostProcessing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -839,6 +839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392926919705411857, guid: 9ad1c5457f2e4954e9509ac81d20155c,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1392926919705411858, guid: 9ad1c5457f2e4954e9509ac81d20155c,
         type: 3}
@@ -1096,20 +1101,45 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 7611245459402774520, guid: 35928dca700faab4fa002e6b350d4d09,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611245459402774520, guid: 35928dca700faab4fa002e6b350d4d09,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
         type: 3}
       propertyPath: m_Intensity
-      value: 6
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
+        type: 3}
+      propertyPath: m_ShadowRadius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.13e-42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611245459402774521, guid: 35928dca700faab4fa002e6b350d4d09,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 2.87e-42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611245459402774523, guid: 35928dca700faab4fa002e6b350d4d09,
         type: 3}
@@ -1219,7 +1249,7 @@ ReflectionProbe:
   m_Mode: 1
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 512
   m_UpdateFrequency: 0
   m_BoxSize: {x: 30, y: 20, z: 80}
   m_BoxOffset: {x: 0, y: 0, z: 0}
@@ -1248,7 +1278,7 @@ Transform:
   m_GameObject: {fileID: 886866833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -39.935226, y: 2.351066, z: -57.1949}
-  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0.81414, z: 0.81414}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -2269,7 +2299,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.17095603, g: 0.16545033, b: 0.24528301, a: 0.87058824}
-  m_Intensity: 4
+  m_Intensity: 7
   m_Range: 1000
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2311,7 +2341,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -2326,8 +2356,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748526677}
   m_LocalRotation: {x: 0.5335003, y: -0.60046804, z: 0.03527812, w: 0.5946185}
-  m_LocalPosition: {x: 239.94, y: 314.18, z: 252.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 167.2, y: 157.4, z: 133.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.96581}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -2454,13 +2484,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.39215687, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
