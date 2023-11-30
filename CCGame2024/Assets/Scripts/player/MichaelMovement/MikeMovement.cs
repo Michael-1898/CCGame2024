@@ -36,6 +36,9 @@ public class MikeMovement : MonoBehaviour
     bool canJump;
     [SerializeField] float coyoteJumpTime;
 
+    //slide
+    bool isSliding = false;
+
     //energy conversion
     float lastYPosition;
     float currentYPosition;
@@ -91,8 +94,15 @@ public class MikeMovement : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)) {
-            print("slide");
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !isSliding && currentVelocity.magnitude > 1) {
+            StartSlide();
+        } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && currentVelocity.magnitude > 1) {
+            ExitSlide();
+        } else if(isSliding && currentVelocity.magnitude < 1) {
+            ExitSlide();
+        }
+        if(isSliding) {
+            SlideMovement();
         }
     }
 
@@ -135,6 +145,21 @@ public class MikeMovement : MonoBehaviour
         rb.velocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         canJump = false;
+    }
+
+    void StartSlide()
+    {
+
+    }
+
+    void ExitSlide()
+    {
+
+    }
+
+    void SlideMovement()
+    {
+
     }
 
     void GroundCheck()
