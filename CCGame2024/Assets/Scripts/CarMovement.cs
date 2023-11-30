@@ -59,7 +59,7 @@ public class CarMovement : MonoBehaviour
                 Time.timeScale = 1.0f;
                 dodgeText.GetComponent<Text>().enabled = false;
                 playerDodge();
-                moonLight.enabled = true;
+                //moonLight.enabled = true;
                 isSlowed = false;
             }
         
