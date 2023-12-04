@@ -29,9 +29,12 @@ public class CarMovement : MonoBehaviour
         Time.timeScale = 1.0f;
         dodgeText = GameObject.Find("Dodge Text");
         player = GameObject.Find("Player");
-        playerAnim = player.GetComponent<Animator>();
+        playerAnim = GameObject.Find("Model").GetComponent<Animator>();
 
         dodgeText.GetComponent<Text>().enabled = false;
+        player.GetComponent<MikeLook>().enabled = false;
+        player.GetComponent<MikeMovement>().enabled = false;
+
         headRight.enabled = false;
         headLeft.enabled = false;
         moonLight.enabled = false;
@@ -67,6 +70,7 @@ public class CarMovement : MonoBehaviour
         if(!(playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.99f))
         {
             player.GetComponent<MikeLook>().enabled = true;
+            player.GetComponent<MikeMovement>().enabled = false;
 
         }
 
@@ -74,7 +78,6 @@ public class CarMovement : MonoBehaviour
 
     void playerDodge()
     {
-        player.GetComponent<MikeLook>().enabled = false;
         playerAnim.SetTrigger("playerRoll");
     }
 
