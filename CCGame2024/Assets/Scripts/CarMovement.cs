@@ -67,7 +67,7 @@ public class CarMovement : MonoBehaviour
             }
         
         }
-        if(!(playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.99f))
+        if(!(playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.99f) && carGo)
         {
             player.GetComponent<MikeLook>().enabled = true;
             player.GetComponent<MikeMovement>().enabled = false;
