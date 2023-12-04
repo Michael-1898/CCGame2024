@@ -94,6 +94,7 @@ public class MikeMovement : MonoBehaviour
             Jump();
         }
 
+        //sliding
         if(Input.GetKeyDown(KeyCode.LeftShift) && !isSliding && currentVelocity.magnitude > 1) {
             StartSlide();
         } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && currentVelocity.magnitude > 1) {
@@ -145,16 +146,26 @@ public class MikeMovement : MonoBehaviour
         rb.velocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         canJump = false;
+
+        if(isSliding) {
+            ExitSlide();
+        }
     }
 
     void StartSlide()
     {
+        //go to crouch height, change collider center, startslide
+        isSliding = true;
+        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 1f;
+        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
 
     }
 
     void ExitSlide()
     {
-
+        isSliding = false;
+        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 2f;
+        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
     }
 
     void SlideMovement()
