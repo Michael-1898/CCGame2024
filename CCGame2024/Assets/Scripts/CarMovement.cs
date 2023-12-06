@@ -13,14 +13,16 @@ public class CarMovement : MonoBehaviour
     [SerializeField] int carSpeed;
     [SerializeField] Animator carMove;
 
-    Animator playerAnim;
+    Animator modelAnim;
     AnimatorStateInfo animStateInfo;
     GameObject dodgeText;
     GameObject player;
+    GameObject model;
 
     bool carGo;
     bool carStart;
     bool isSlowed;
+    bool resetPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,8 @@ public class CarMovement : MonoBehaviour
         Time.timeScale = 1.0f;
         dodgeText = GameObject.Find("Dodge Text");
         player = GameObject.Find("Player");
-        playerAnim = GameObject.Find("Model").GetComponent<Animator>();
+        model = GameObject.Find("Model");
+        modelAnim = model.GetComponent<Animator>();
 
         dodgeText.GetComponent<Text>().enabled = false;
         player.GetComponent<MikeLook>().enabled = false;
@@ -41,6 +44,7 @@ public class CarMovement : MonoBehaviour
         carGo = false;
         carStart = false;
         isSlowed = false;
+        resetPosition = true;
 
         StartCoroutine(carDrive());
     }
@@ -67,19 +71,26 @@ public class CarMovement : MonoBehaviour
             }
         
         }
-        if(!(playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.99f) && carGo)
+
+        if(!(modelAnim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.99f) && carGo)
         {
-            player.transform.Rotate(0, 0, 0);
+            if(resetPosition)
+            {
+                // player.transform.position = getChildWorldSpacePos(player, 0); <-- this is giving the correct position
+                // model.transform.position = new Vector3(0, 0, 0); <-- This line of code isn't working, need to set model position to 0,0,0 relative to the player,s position
+
+                // resetPosition = false;
+                print(getChildWorldSpacePos(player, 0));
+            }
             player.GetComponent<MikeLook>().enabled = true;
             player.GetComponent<MikeMovement>().enabled = true;
-
         }
 
     }
 
     void playerDodge()
     {
-        playerAnim.SetTrigger("playerRoll");
+        modelAnim.SetTrigger("playerRoll");
     }
 
     IEnumerator carDrive()
@@ -100,6 +111,11 @@ public class CarMovement : MonoBehaviour
         Time.timeScale = 0.01f;
         dodgeText.GetComponent<Text>().enabled = true;
         isSlowed = true;
+    }
+
+    Vector3 getChildWorldSpacePos(GameObject parent, int childNum)
+    {
+        return parent.transform.GetChild(childNum).position;
     }
 
     
