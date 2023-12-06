@@ -26,6 +26,19 @@ public class openDoor : MonoBehaviour
         {
             anim.SetTrigger("openDoor");
         }
+
+        if (col.gameObject.tag == "KeyKeep")
+        {
+            anim.SetTrigger("openDoor");
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "KeyKeep")
+        {
+            anim.SetTrigger("closeDoor");
+        }
     }
 
 }
