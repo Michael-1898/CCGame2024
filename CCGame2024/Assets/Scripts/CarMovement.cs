@@ -23,6 +23,7 @@ public class CarMovement : MonoBehaviour
     bool carStart;
     bool isSlowed;
     bool resetPosition;
+    Vector3 animationPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -76,14 +77,17 @@ public class CarMovement : MonoBehaviour
         {
             if(resetPosition)
             {
-                // player.transform.position = getChildWorldSpacePos(player, 0); <-- this is giving the correct position
-                // model.transform.position = new Vector3(0, 0, 0); <-- This line of code isn't working, need to set model position to 0,0,0 relative to the player,s position
+                player.transform.position = animationPosition; // <-- this is giving the correct position
+                print("moved");
+                //model.transform.localPosition = new Vector3(19, 0, 0); // <-- This line of code isn't working, need to set model position to 0,0,0 relative to the player,s position
 
-                // resetPosition = false;
-                print(getChildWorldSpacePos(player, 0));
+                resetPosition = false;
             }
             player.GetComponent<MikeLook>().enabled = true;
             player.GetComponent<MikeMovement>().enabled = true;
+        } else if(modelAnim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.87f) {
+            animationPosition = getChildWorldSpacePos(player, 0);
+            print(animationPosition);
         }
 
     }
