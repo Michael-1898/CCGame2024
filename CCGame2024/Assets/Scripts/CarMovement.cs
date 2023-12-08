@@ -8,7 +8,6 @@ public class CarMovement : MonoBehaviour
 
     [SerializeField] Light headRight;
     [SerializeField] Light headLeft;
-    [SerializeField] Light moonLight;
     [SerializeField] float slowTime;
     [SerializeField] int carSpeed;
     [SerializeField] Animator carMove;
@@ -41,7 +40,6 @@ public class CarMovement : MonoBehaviour
 
         headRight.enabled = false;
         headLeft.enabled = false;
-        moonLight.enabled = false;
         carGo = false;
         carStart = false;
         isSlowed = false;
