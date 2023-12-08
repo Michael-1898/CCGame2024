@@ -38,6 +38,8 @@ public class MikeMovement : MonoBehaviour
 
     //slide
     bool isSliding = false;
+    [SerializeField] float slideFriction;
+    [SerializeField] Camera playerCam;
 
     //energy conversion
     float lastYPosition;
@@ -84,17 +86,19 @@ public class MikeMovement : MonoBehaviour
         //calculate change in velocity
 
         //get movement input
-        verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
-        currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
-        currentVelocity = currentVelocity * moveSpeed;
+        if(!isSliding) {
+            verticalInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
+            currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
+            currentVelocity = currentVelocity * moveSpeed;
+        }
 
         //get jump input
         if(Input.GetKeyDown("space") && isGrounded && canJump) {
             Jump();
         }
 
-        //sliding
+        //sliding input
         if(Input.GetKeyDown(KeyCode.LeftShift) && !isSliding && currentVelocity.magnitude > 1) {
             StartSlide();
         } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && currentVelocity.magnitude > 1) {
@@ -102,6 +106,7 @@ public class MikeMovement : MonoBehaviour
         } else if(isSliding && currentVelocity.magnitude < 1) {
             ExitSlide();
         }
+        //sliding movement
         if(isSliding) {
             SlideMovement();
         }
@@ -137,7 +142,7 @@ public class MikeMovement : MonoBehaviour
         velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
         //clamp velocity scalar
         velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
-        //print("scalar" + velocityScalar);
+        print("scalar" + velocityScalar);
     }
 
     void Jump()
@@ -158,6 +163,8 @@ public class MikeMovement : MonoBehaviour
         isSliding = true;
         transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 1f;
         transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
+        playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y-0.75f, playerCam.transform.position.z);
+
 
     }
 
@@ -166,11 +173,13 @@ public class MikeMovement : MonoBehaviour
         isSliding = false;
         transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 2f;
         transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
+        playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y+0.75f, playerCam.transform.position.z);
     }
 
     void SlideMovement()
     {
-
+        //friction
+        rb.AddForce(-transform.forward * slideFriction, ForceMode.Acceleration);
     }
 
     void GroundCheck()

@@ -207,15 +207,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rb: {fileID: 1392926919705411862}
-  jumpForce: 10
+  jumpForce: 11
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
   coyoteJumpTime: 0.13
+  slideFriction: 7
+  playerCam: {fileID: 1392926919010302687}
   groundGravityScale: 3
-  airGravityScale: 1
+  airGravityScale: 1.5
 --- !u!54 &1392926919705411862
 Rigidbody:
   m_ObjectHideFlags: 0
