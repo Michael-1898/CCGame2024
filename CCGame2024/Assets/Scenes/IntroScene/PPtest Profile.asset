@@ -54,7 +54,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.828
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.138
+    m_Value: 0.22
     min: 0
     max: 1
 --- !u!114 &4811854034956381356
@@ -236,11 +236,11 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 2
     min: 0
   scatter:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.146
     min: 0
     max: 1
   clamp:
