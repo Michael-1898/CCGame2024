@@ -90,9 +90,12 @@ public class MikeMovement : MonoBehaviour
         if(!isSliding) {
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
+            //print("V: " + verticalInput);
+            //print("H: " + horizontalInput);
             currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
             currentVelocity = currentVelocity * moveSpeed;
         }
+        //print(currentVelocity);
 
         //get jump input
         if(Input.GetKeyDown("space") && isGrounded && canJump) {
