@@ -40,6 +40,7 @@ public class MikeMovement : MonoBehaviour
     bool isSliding = false;
     [SerializeField] float slideFriction;
     [SerializeField] Camera playerCam;
+    Vector3 slideDirection;
 
     //energy conversion
     float lastYPosition;
@@ -72,12 +73,12 @@ public class MikeMovement : MonoBehaviour
         //ground check switches value of isGrounded and canJump variable
         GroundCheck();
 
-        if(rb.velocity.magnitude < 0.05) {
+        if(rb.velocity.magnitude < 0.3f) {
             lastYPosition = transform.position.y;
-            //print("new y pos");
+            print("new y pos");
         }
 
-        if(isGrounded && rb.velocity.magnitude > 0.05) {
+        if(isGrounded && rb.velocity.magnitude > 0.05f) {
             EnergyConservation();
         }
         //calculate the change in y pos
@@ -99,7 +100,7 @@ public class MikeMovement : MonoBehaviour
         }
 
         //sliding input
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !isSliding && currentVelocity.magnitude > 1) {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !isSliding && currentVelocity.magnitude > 1) {
             StartSlide();
         } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && currentVelocity.magnitude > 1) {
             ExitSlide();
@@ -142,7 +143,7 @@ public class MikeMovement : MonoBehaviour
         velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
         //clamp velocity scalar
         velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
-        print("scalar" + velocityScalar);
+        //print("scalar" + velocityScalar);
     }
 
     void Jump()
@@ -165,7 +166,7 @@ public class MikeMovement : MonoBehaviour
         transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
         playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y-0.75f, playerCam.transform.position.z);
 
-
+        slideDirection = transform.forward;
     }
 
     void ExitSlide()
@@ -179,7 +180,7 @@ public class MikeMovement : MonoBehaviour
     void SlideMovement()
     {
         //friction
-        rb.AddForce(-transform.forward * slideFriction, ForceMode.Acceleration);
+        rb.AddForce(-slideDirection * slideFriction, ForceMode.Acceleration);
     }
 
     void GroundCheck()
@@ -195,8 +196,10 @@ public class MikeMovement : MonoBehaviour
             isGrounded = true;
             canJump = true;
             gravityScalar = groundGravityScale;
-            lastYPosition = transform.position.y;
-            //print("new y pos");
+            if(rb.velocity.magnitude < 0.3f) {
+                lastYPosition = transform.position.y;
+                print("new y pos");
+            }
         }
     }
 
