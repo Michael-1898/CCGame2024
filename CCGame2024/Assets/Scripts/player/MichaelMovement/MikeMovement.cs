@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
+Redo Notes:
+-refactor movement to be force based
+-used add force with force mode acceleration for movement and then clamp the movespeed
+-for energy conservation don't scale the velocity directly, just increase the clamp by the calculated change in velocity
+-this way slide can just apply friction through a force as well
+
 Slide Notes:
 -locks movement to direction the player was moving when they entered the slide
 -player can still look around, but moves in same direction
@@ -42,6 +48,7 @@ public class MikeMovement : MonoBehaviour
     [SerializeField] Camera playerCam;
     Vector3 slideDirection;
     float initialSlideSpeed;
+    float slideDuration;
 
     //energy conversion
     float lastYPosition;
@@ -78,7 +85,7 @@ public class MikeMovement : MonoBehaviour
 
         if(rb.velocity.magnitude < 0.3f) {
             lastYPosition = transform.position.y;
-            print("new y pos");
+            //print("new y pos");
         }
 
         if(isGrounded && rb.velocity.magnitude > 0.05f) {
@@ -124,13 +131,15 @@ public class MikeMovement : MonoBehaviour
         if(!isSliding) {
             rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
         } else if (isSliding) { //if sliding
-            if(rb.velocity.magnitude > 2 * initialSlideSpeed) { //if speed is too high
-                //scale velocity to be correct value
-                float slideScalar = (2 * initialSlideSpeed) / rb.velocity.magnitude;
-                rb.velocity = new Vector3(rb.velocity.x * slideScalar, rb.velocity.y, rb.velocity.z * slideScalar);
-            } else {
-                rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar); //do velocity based on rigidbody, not current velocity
-            }
+            // if(rb.velocity.magnitude > 2 * initialSlideSpeed) { //if speed is too high
+            //     //scale velocity to be correct value
+            //     float slideScalar = (2 * initialSlideSpeed) / rb.velocity.magnitude;
+            //     rb.velocity = new Vector3(rb.velocity.x * slideScalar, rb.velocity.y, rb.velocity.z * slideScalar);
+            // } else {
+            //     rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar); //do velocity based on rigidbody, not current velocity
+            // }
+            //rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar);
+            rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
         }
     }
 
@@ -198,8 +207,17 @@ public class MikeMovement : MonoBehaviour
 
     void SlideMovement()
     {
-        //friction
-        rb.AddForce(-slideDirection * slideFriction, ForceMode.Acceleration);
+        float localSlideFriction = slideFriction;
+
+        //slide duration
+        slideDuration += Time.deltaTime;
+        if(slideDuration > 0.75f) {
+            localSlideFriction *= (10+slideDuration);
+        }
+
+        //apply friction
+        rb.AddForce(-slideDirection * localSlideFriction, ForceMode.Acceleration);
+        //StartCoroutine(IncreaseSlideFriction);
     }
 
     void GroundCheck()
@@ -217,10 +235,16 @@ public class MikeMovement : MonoBehaviour
             gravityScalar = groundGravityScale;
             if(rb.velocity.magnitude < 0.3f) {
                 lastYPosition = transform.position.y;
-                print("new y pos");
+                //print("new y pos");
             }
         }
     }
+
+    // IEnumerator IncreaseSlideFriction()
+    // {
+    //     yield return new WaitForSeconds(0.25f);
+        
+    // }
 
     IEnumerator CoyoteJump()
     {
