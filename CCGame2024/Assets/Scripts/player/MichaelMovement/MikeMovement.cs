@@ -124,11 +124,12 @@ public class MikeMovement : MonoBehaviour
         if(!isSliding) {
             rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
         } else if (isSliding) { //if sliding
-            rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar); //do velocity based on rigidbody, not current velocity
             if(rb.velocity.magnitude > 2 * initialSlideSpeed) { //if speed is too high
                 //scale velocity to be correct value
                 float slideScalar = (2 * initialSlideSpeed) / rb.velocity.magnitude;
                 rb.velocity = new Vector3(rb.velocity.x * slideScalar, rb.velocity.y, rb.velocity.z * slideScalar);
+            } else {
+                rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar); //do velocity based on rigidbody, not current velocity
             }
         }
     }

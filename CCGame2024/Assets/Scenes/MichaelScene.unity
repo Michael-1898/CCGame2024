@@ -807,7 +807,7 @@ PrefabInstance:
     - target: {fileID: 1392926919705411857, guid: 9ad1c5457f2e4954e9509ac81d20155c,
         type: 3}
       propertyPath: slideFriction
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1392926919705411858, guid: 9ad1c5457f2e4954e9509ac81d20155c,
         type: 3}
