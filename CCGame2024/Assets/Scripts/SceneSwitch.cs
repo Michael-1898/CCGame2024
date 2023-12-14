@@ -30,6 +30,7 @@ public class SceneSwitch : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            print("apple");
             StartCoroutine(FadeOut());
         }
     }
