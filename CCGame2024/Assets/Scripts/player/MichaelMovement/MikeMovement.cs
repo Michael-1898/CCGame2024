@@ -27,9 +27,10 @@ public class MikeMovement : MonoBehaviour
     //base movement
     float verticalInput;
     float horizontalInput;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float moveForce;
     [SerializeField] Rigidbody rb;
-    Vector3 currentVelocity;
+    Vector3 movementVector;
+    [SerializeField] float maxWalkSpeed;
 
     //jump
     [SerializeField] float jumpForce;
@@ -47,13 +48,14 @@ public class MikeMovement : MonoBehaviour
     [SerializeField] float slideFriction;
     [SerializeField] Camera playerCam;
     Vector3 slideDirection;
-    float initialSlideSpeed;
     float slideDuration;
+    [SerializeField] float maxSlideSpeed;
 
     //energy conversion
     float lastYPosition;
     float currentYPosition;
     float velocityScalar = 1;
+    float deltaV;
 
     //gravity
     [SerializeField] float groundGravityScale;
@@ -73,9 +75,6 @@ public class MikeMovement : MonoBehaviour
         ApplyGravity();
 
         currentYPosition = transform.position.y;
-        if(!isSliding) {
-            currentVelocity = rb.velocity;
-        }
 
         // print(lastYPosition);
         // print(currentYPosition);
@@ -102,8 +101,8 @@ public class MikeMovement : MonoBehaviour
             horizontalInput = Input.GetAxis("Horizontal");
             //print("V: " + verticalInput);
             //print("H: " + horizontalInput);
-            currentVelocity = (transform.forward * verticalInput) + (transform.right * horizontalInput);
-            currentVelocity = currentVelocity * moveSpeed;
+            movementVector = (transform.forward * verticalInput) + (transform.right * horizontalInput).normalized;
+            movementVector = movementVector * moveForce;
         }
         //print(currentVelocity);
 
@@ -113,33 +112,32 @@ public class MikeMovement : MonoBehaviour
         }
 
         //sliding input
-        if(Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !isSliding && currentVelocity.magnitude > 1) {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !isSliding && rb.velocity.magnitude > 1) {
             StartSlide();
         } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
             ExitSlide();
         } else if(isSliding && rb.velocity.magnitude < 1) {
             ExitSlide();
         }
-        //sliding movement
-        if(isSliding) {
-            SlideMovement();
-        }
     }
 
     void FixedUpdate()
     {
         if(!isSliding) {
-            rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
+            //force based movement, use force to accelerate, then clamp speed
+            rb.AddForce(movementVector, ForceMode.Acceleration);
+            if(rb.velocity.magnitude > maxWalkSpeed) {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxWalkSpeed + deltaV);
+            }
+            //if not pressing buttons, apply a friction force to slow player down faster
+            if(Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
+                rb.velocity = rb.velocity * 0.2f;
+            }
         } else if (isSliding) { //if sliding
-            // if(rb.velocity.magnitude > 2 * initialSlideSpeed) { //if speed is too high
-            //     //scale velocity to be correct value
-            //     float slideScalar = (2 * initialSlideSpeed) / rb.velocity.magnitude;
-            //     rb.velocity = new Vector3(rb.velocity.x * slideScalar, rb.velocity.y, rb.velocity.z * slideScalar);
-            // } else {
-            //     rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar); //do velocity based on rigidbody, not current velocity
-            // }
-            //rb.velocity = new Vector3(rb.velocity.x * velocityScalar, rb.velocity.y, rb.velocity.z * velocityScalar);
-            rb.velocity = new Vector3(currentVelocity.x * velocityScalar, rb.velocity.y, currentVelocity.z * velocityScalar);
+            SlideMovement();
+            if(rb.velocity.magnitude > maxSlideSpeed) {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSlideSpeed + deltaV);
+            }
         }
     }
 
@@ -156,25 +154,27 @@ public class MikeMovement : MonoBehaviour
         //negative U = positive k
         //k = (1/2)m(v^2)
         //v = sqrt(2k/m)
-        float deltaV = Mathf.Sqrt((2 * Mathf.Abs(deltaU)) / rb.mass);
+        deltaV = Mathf.Sqrt((2 * Mathf.Abs(deltaU)) / rb.mass);
         if(deltaU > 0) {
             deltaV *= -1;
         }
         //print(deltaV);
         //print(rb.velocity.magnitude);
         
+        //----------For Old Velocity Movement-----------
         //oldV * vScalar = newV
         //vScalar = newV/oldV
-        velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
+        //velocityScalar = (rb.velocity.magnitude + deltaV) / rb.velocity.magnitude;
         //clamp velocity scalar
-        velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
+        //velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
         //print("scalar" + velocityScalar);
+        //----------------------------------------------
     }
 
     void Jump()
     {
         gravityScalar = airGravityScale;
-        rb.velocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         canJump = false;
 
@@ -193,8 +193,6 @@ public class MikeMovement : MonoBehaviour
 
         slideDirection = transform.forward;
         //print(slideDirection);
-
-        initialSlideSpeed = rb.velocity.magnitude;
     }
 
     void ExitSlide()
@@ -210,14 +208,13 @@ public class MikeMovement : MonoBehaviour
         float localSlideFriction = slideFriction;
 
         //slide duration
-        slideDuration += Time.deltaTime;
-        if(slideDuration > 0.75f) {
-            localSlideFriction *= (10+slideDuration);
-        }
+        // slideDuration += Time.deltaTime;
+        // if(slideDuration > 0.75f) {
+        //     localSlideFriction *= (10+slideDuration);
+        // }
 
         //apply friction
-        rb.AddForce(-slideDirection * localSlideFriction, ForceMode.Acceleration);
-        //StartCoroutine(IncreaseSlideFriction);
+        rb.AddForce(-slideDirection /* * localSlideFriction*/, ForceMode.Acceleration);
     }
 
     void GroundCheck()
@@ -239,12 +236,6 @@ public class MikeMovement : MonoBehaviour
             }
         }
     }
-
-    // IEnumerator IncreaseSlideFriction()
-    // {
-    //     yield return new WaitForSeconds(0.25f);
-        
-    // }
 
     IEnumerator CoyoteJump()
     {
