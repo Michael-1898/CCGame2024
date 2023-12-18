@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e414c29c2bb4041a6f7b54d5963adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 37
+  moveForce: 50
   rb: {fileID: 1392926919705411862}
   maxWalkSpeed: 9
   jumpForce: 11
@@ -215,7 +215,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   coyoteJumpTime: 0.13
-  slideFriction: 8
+  slideFriction: 4
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
   groundGravityScale: 3

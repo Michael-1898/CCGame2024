@@ -119,6 +119,18 @@ public class MikeMovement : MonoBehaviour
         } else if(isSliding && rb.velocity.magnitude < 1) {
             ExitSlide();
         }
+
+        //print(maxWalkSpeed + deltaV);
+        //print(rb.velocity.magnitude);
+        
+        //clamp speed
+        if(rb.velocity.magnitude > maxWalkSpeed && canJump) {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxWalkSpeed + deltaV);
+            print("yerp");
+        } else if(maxWalkSpeed + deltaV <= 4 && canJump) {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 4);
+            print("nerp");
+        }
     }
 
     void FixedUpdate()
@@ -126,11 +138,9 @@ public class MikeMovement : MonoBehaviour
         if(!isSliding) {
             //force based movement, use force to accelerate, then clamp speed
             rb.AddForce(movementVector, ForceMode.Acceleration);
-            if(rb.velocity.magnitude > maxWalkSpeed) {
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxWalkSpeed + deltaV);
-            }
+            
             //if not pressing buttons, apply a friction force to slow player down faster
-            if(Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
+            if(Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1 && canJump) {
                 rb.velocity = rb.velocity * 0.2f;
             }
         } else if (isSliding) { //if sliding
@@ -146,7 +156,7 @@ public class MikeMovement : MonoBehaviour
         float deltaY = currentYPosition - lastYPosition;
         //deltaY is having too quick of an effect, so gonna divide by a number so it increases at a lower rate
         //different number to divide by depending on whether or not deltaY is negative or positive may be good idea
-        deltaY /= 4;
+        //deltaY /= 4;
 
         float deltaU = rb.mass * 9.8f * deltaY;
         //print(deltaU);
