@@ -31,6 +31,9 @@ public class MikeMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
     Vector3 movementVector;
     [SerializeField] float maxWalkSpeed;
+    [SerializeField] float minWalkSpeed;
+    [SerializeField] float maxSlopeAngle;
+    RaycastHit slopeHit;
 
     //jump
     [SerializeField] float jumpForce;
@@ -54,7 +57,6 @@ public class MikeMovement : MonoBehaviour
     //energy conversion
     float lastYPosition;
     float currentYPosition;
-    float velocityScalar = 1;
     float deltaV;
 
     //gravity
@@ -72,7 +74,11 @@ public class MikeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ApplyGravity();
+        print(OnSlope());
+
+        if(!OnSlope()) {
+            ApplyGravity();
+        }
 
         currentYPosition = transform.position.y;
 
@@ -130,9 +136,11 @@ public class MikeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!isSliding) {
+        if(!isSliding && !OnSlope()) {
             //force based movement, use force to accelerate, then clamp speed
             rb.AddForce(movementVector, ForceMode.Force);
+        } else if(!isSliding && OnSlope()) {
+            rb.AddForce(GetSlopeMoveVector(), ForceMode.Force);
         } else if (isSliding) { //if sliding
             SlideMovement();
             if(rb.velocity.magnitude > maxSlideSpeed) {
@@ -179,7 +187,7 @@ public class MikeMovement : MonoBehaviour
             //reduce to max speed and apply
             Vector3 clampedVelocity;
             if(maxWalkSpeed + deltaV < 5) {
-                clampedVelocity = currentVelocity.normalized * 5;    
+                clampedVelocity = currentVelocity.normalized * minWalkSpeed;    
             } else {
                 clampedVelocity = currentVelocity.normalized * (maxWalkSpeed + deltaV);
             }
@@ -251,6 +259,20 @@ public class MikeMovement : MonoBehaviour
                 //print("new y pos");
             }
         }
+    }
+
+    bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1.3f)) {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return (angle < maxSlopeAngle && angle != 0);
+        }
+        return false;
+    }
+
+    Vector3 GetSlopeMoveVector()
+    {
+        return Vector3.ProjectOnPlane(movementVector, slopeHit.normal).normalized * moveForce;
     }
 
     IEnumerator CoyoteJump()

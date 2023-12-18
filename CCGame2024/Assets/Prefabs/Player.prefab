@@ -208,7 +208,8 @@ MonoBehaviour:
   moveForce: 70
   rb: {fileID: 1392926919705411862}
   maxWalkSpeed: 9
-  groundDrag: 5
+  minWalkSpeed: 6
+  maxSlopeAngle: 50
   jumpForce: 10
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
