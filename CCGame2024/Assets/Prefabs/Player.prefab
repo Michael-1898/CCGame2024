@@ -205,21 +205,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e414c29c2bb4041a6f7b54d5963adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 50
+  moveForce: 70
   rb: {fileID: 1392926919705411862}
   maxWalkSpeed: 9
-  jumpForce: 11
+  groundDrag: 5
+  jumpForce: 10
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
   coyoteJumpTime: 0.13
-  slideFriction: 4
+  slideFriction: 0.1
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
   groundGravityScale: 3
-  airGravityScale: 1.5
+  airGravityScale: 2
 --- !u!54 &1392926919705411862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -235,7 +236,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &5205286852479631006
 GameObject:
   m_ObjectHideFlags: 0

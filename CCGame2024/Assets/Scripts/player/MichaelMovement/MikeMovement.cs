@@ -87,7 +87,9 @@ public class MikeMovement : MonoBehaviour
             //print("new y pos");
         }
 
-        if(isGrounded && rb.velocity.magnitude > 0.05f) {
+        ApplyDrag();
+
+        if(isGrounded && rb.velocity.magnitude > 0.5f) {
             EnergyConservation();
         }
         //calculate the change in y pos
@@ -123,26 +125,14 @@ public class MikeMovement : MonoBehaviour
         //print(maxWalkSpeed + deltaV);
         //print(rb.velocity.magnitude);
         
-        //clamp speed
-        if(rb.velocity.magnitude > maxWalkSpeed && canJump) {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxWalkSpeed + deltaV);
-            print("yerp");
-        } else if(maxWalkSpeed + deltaV <= 4 && canJump) {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 4);
-            print("nerp");
-        }
+        ClampSpeed();
     }
 
     void FixedUpdate()
     {
         if(!isSliding) {
             //force based movement, use force to accelerate, then clamp speed
-            rb.AddForce(movementVector, ForceMode.Acceleration);
-            
-            //if not pressing buttons, apply a friction force to slow player down faster
-            if(Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1 && canJump) {
-                rb.velocity = rb.velocity * 0.2f;
-            }
+            rb.AddForce(movementVector, ForceMode.Force);
         } else if (isSliding) { //if sliding
             SlideMovement();
             if(rb.velocity.magnitude > maxSlideSpeed) {
@@ -156,7 +146,7 @@ public class MikeMovement : MonoBehaviour
         float deltaY = currentYPosition - lastYPosition;
         //deltaY is having too quick of an effect, so gonna divide by a number so it increases at a lower rate
         //different number to divide by depending on whether or not deltaY is negative or positive may be good idea
-        //deltaY /= 4;
+        deltaY /= 4;
 
         float deltaU = rb.mass * 9.8f * deltaY;
         //print(deltaU);
@@ -179,6 +169,22 @@ public class MikeMovement : MonoBehaviour
         //velocityScalar = Mathf.Clamp(velocityScalar, 0.5f, 2f);
         //print("scalar" + velocityScalar);
         //----------------------------------------------
+    }
+
+    void ClampSpeed()
+    {
+        Vector3 currentVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //if current speed is too high
+        if(currentVelocity.magnitude > maxWalkSpeed + deltaV) {
+            //reduce to max speed and apply
+            Vector3 clampedVelocity;
+            if(maxWalkSpeed + deltaV < 5) {
+                clampedVelocity = currentVelocity.normalized * 5;    
+            } else {
+                clampedVelocity = currentVelocity.normalized * (maxWalkSpeed + deltaV);
+            }
+            rb.velocity = new Vector3(clampedVelocity.x, rb.velocity.y, clampedVelocity.z);
+        }
     }
 
     void Jump()
@@ -251,6 +257,13 @@ public class MikeMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(coyoteJumpTime);
         canJump = false;
+    }
+
+    void ApplyDrag()
+    {
+        if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
+            rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
+        }
     }
 
     void ApplyGravity()
