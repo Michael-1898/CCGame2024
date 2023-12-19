@@ -53,6 +53,7 @@ public class MikeMovement : MonoBehaviour
     Vector3 slideDirection;
     float slideDuration;
     [SerializeField] float maxSlideSpeed;
+    Transform playerModel;
 
     //energy conversion
     float lastYPosition;
@@ -69,6 +70,7 @@ public class MikeMovement : MonoBehaviour
     {
         Cursor.visible = false;
         gravityScalar = airGravityScale;
+        playerModel = transform.GetChild(0).gameObject.transform;
     }
 
     // Update is called once per frame
@@ -136,11 +138,15 @@ public class MikeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!isSliding && !OnSlope()) {
+        if(!isSliding && !OnSlope()) { //default movement
             //force based movement, use force to accelerate, then clamp speed
             rb.AddForce(movementVector, ForceMode.Force);
-        } else if(!isSliding && OnSlope()) {
+        } else if(!isSliding && OnSlope()) { //slope movement
             rb.AddForce(GetSlopeMoveVector(), ForceMode.Force);
+            
+            if(rb.velocity.y > 0) {
+                rb.AddForce(Vector3.down * 40f, ForceMode.Force);
+            }
         } else if (isSliding) { //if sliding
             SlideMovement();
             if(rb.velocity.magnitude > maxSlideSpeed) {
@@ -211,9 +217,11 @@ public class MikeMovement : MonoBehaviour
     {
         //go to crouch height, change collider center, startslide
         isSliding = true;
-        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 1f;
-        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
-        playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y-0.75f, playerCam.transform.position.z);
+        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 1f;
+        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
+        playerModel.localScale = new Vector3(playerModel.localScale.x, 0.5f, playerModel.localScale.z); //shrink player
+        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); //push player down cause now they're floating a bit since they shrunk from top and bottom
+        //playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y-0.75f, playerCam.transform.position.z);
 
         slideDirection = transform.forward;
         //print(slideDirection);
@@ -222,9 +230,10 @@ public class MikeMovement : MonoBehaviour
     void ExitSlide()
     {
         isSliding = false;
-        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 2f;
-        transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
-        playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y + 0.75f, playerCam.transform.position.z);
+        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 2f;
+        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
+        playerModel.localScale = new Vector3(playerModel.localScale.x, 1f, playerModel.localScale.z);
+        //playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y + 0.75f, playerCam.transform.position.z);
     }
 
     void SlideMovement()
@@ -238,7 +247,7 @@ public class MikeMovement : MonoBehaviour
         // }
 
         //apply friction
-        rb.AddForce(-slideDirection /* * localSlideFriction*/, ForceMode.Acceleration);
+        rb.AddForce(-slideDirection * slideFriction, ForceMode.Acceleration);
     }
 
     void GroundCheck()
@@ -272,7 +281,7 @@ public class MikeMovement : MonoBehaviour
 
     Vector3 GetSlopeMoveVector()
     {
-        return Vector3.ProjectOnPlane(movementVector, slopeHit.normal).normalized * moveForce;
+        return (Vector3.ProjectOnPlane(movementVector, slopeHit.normal).normalized * moveForce);
     }
 
     IEnumerator CoyoteJump()
