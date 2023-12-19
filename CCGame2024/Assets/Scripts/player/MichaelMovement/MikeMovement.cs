@@ -139,13 +139,12 @@ public class MikeMovement : MonoBehaviour
     void FixedUpdate()
     {
         if(!isSliding && !OnSlope()) { //default movement
-            //force based movement, use force to accelerate, then clamp speed
             rb.AddForce(movementVector, ForceMode.Force);
         } else if(!isSliding && OnSlope()) { //slope movement
             rb.AddForce(GetSlopeMoveVector(), ForceMode.Force);
             
-            if(rb.velocity.y > 0) {
-                rb.AddForce(Vector3.down * 40f, ForceMode.Force);
+            if(rb.velocity.y > 0) { //downward force while on slope to keep player on it
+                rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
         } else if (isSliding) { //if sliding
             SlideMovement();
@@ -187,17 +186,28 @@ public class MikeMovement : MonoBehaviour
 
     void ClampSpeed()
     {
-        Vector3 currentVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        //if current speed is too high
-        if(currentVelocity.magnitude > maxWalkSpeed + deltaV) {
-            //reduce to max speed and apply
-            Vector3 clampedVelocity;
-            if(maxWalkSpeed + deltaV < 5) {
-                clampedVelocity = currentVelocity.normalized * minWalkSpeed;    
-            } else {
-                clampedVelocity = currentVelocity.normalized * (maxWalkSpeed + deltaV);
+        //limiting speed on slope
+        if(OnSlope()) {
+            if(rb.velocity.magnitude > maxWalkSpeed + deltaV) {
+                if(maxWalkSpeed + deltaV < minWalkSpeed) {
+                    rb.velocity = rb.velocity.normalized * minWalkSpeed;
+                } else {
+                    rb.velocity = rb.velocity.normalized * (maxWalkSpeed + deltaV);
+                }
             }
-            rb.velocity = new Vector3(clampedVelocity.x, rb.velocity.y, clampedVelocity.z);
+        } else {
+            Vector3 currentVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            //if current speed is too high
+            if(currentVelocity.magnitude > maxWalkSpeed + deltaV) {
+                //reduce to max speed and apply
+                Vector3 clampedVelocity;
+                if(maxWalkSpeed + deltaV < minWalkSpeed) {
+                    clampedVelocity = currentVelocity.normalized * minWalkSpeed;    
+                } else {
+                    clampedVelocity = currentVelocity.normalized * (maxWalkSpeed + deltaV);
+                }
+                rb.velocity = new Vector3(clampedVelocity.x, rb.velocity.y, clampedVelocity.z);
+            }
         }
     }
 
