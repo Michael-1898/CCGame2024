@@ -78,7 +78,7 @@ public class MikeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(OnSlope());
+        //print(OnSlope());
 
         if(!OnSlope()) {
             ApplyGravity();
@@ -97,7 +97,9 @@ public class MikeMovement : MonoBehaviour
             //print("new y pos");
         }
 
-        ApplyDrag();
+        if(!isSliding) {
+            ApplyDrag();
+        }
 
         if(isGrounded && rb.velocity.magnitude > 0.5f) {
             EnergyConservation();
@@ -137,7 +139,7 @@ public class MikeMovement : MonoBehaviour
         
         if(!isSliding) {
             ClampSpeed(minWalkSpeed, maxWalkSpeed);
-        } else {
+        } else if(isSliding) {
             ClampSpeed(0, maxSlideSpeed);
         }
     }
@@ -234,7 +236,7 @@ public class MikeMovement : MonoBehaviour
         rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); //push player down cause now they're floating a bit since they shrunk from top and bottom
 
         slideDirection = transform.forward;
-        slideInitialY = transform.position.y;
+        slideInitialY = groundCheck.position.y;
         //print(slideDirection);
     }
 
@@ -246,11 +248,13 @@ public class MikeMovement : MonoBehaviour
 
     void SlideMovement()
     {
+        //calculate deltaY based on y level from when slide was started
         slideDeltaY = transform.position.y - slideInitialY;
 
-        //add slide force
-        //apply force with magnitude of movement they already have, but increase if it goes up and vise versa
-        rb.AddForce(slideDirection * rb.velocity.magnitude * (1 - slideDeltaY), ForceMode.Force);
+        //if going down, add slide force
+        if(slideDeltaY < 0) {
+            //rb.AddForce(slideDirection * slideForce, ForceMode.Force);
+        }
     }
 
     void GroundCheck()

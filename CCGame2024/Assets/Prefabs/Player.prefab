@@ -217,7 +217,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   coyoteJumpTime: 0.13
-  slideForce: 70
+  slideForce: 40
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
   groundGravityScale: 3
