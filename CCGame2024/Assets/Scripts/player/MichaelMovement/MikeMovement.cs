@@ -13,7 +13,8 @@ Slide Notes:
 -locks movement to direction the player was moving when they entered the slide
 -player can still look around, but moves in same direction
 -player can accelerate to even higher speeds than when running
--player gets friction applied when they are touching ground
+-player gets slide force applied determined by deltaY (since player naturally comes to a stop anyways when no forces are applied)
+-playyer has initial slide speed, but after half a second or something they start slowing down
 -velocity/momentum is preserved when entering slide, p=mv
 -player presses slide key, start sliding, cotinue sliding until they either slow down enough, jump, or press the slide key again
 
@@ -48,12 +49,13 @@ public class MikeMovement : MonoBehaviour
 
     //slide
     bool isSliding = false;
-    [SerializeField] float slideFriction;
+    [SerializeField] float slideForce;
     [SerializeField] Camera playerCam;
     Vector3 slideDirection;
-    float slideDuration;
     [SerializeField] float maxSlideSpeed;
     Transform playerModel;
+    float slideDeltaY;
+    float slideInitialY;
 
     //energy conversion
     float lastYPosition;
@@ -133,7 +135,11 @@ public class MikeMovement : MonoBehaviour
         //print(maxWalkSpeed + deltaV);
         //print(rb.velocity.magnitude);
         
-        ClampSpeed();
+        if(!isSliding) {
+            ClampSpeed(minWalkSpeed, maxWalkSpeed);
+        } else {
+            ClampSpeed(0, maxSlideSpeed);
+        }
     }
 
     void FixedUpdate()
@@ -148,9 +154,6 @@ public class MikeMovement : MonoBehaviour
             }
         } else if (isSliding) { //if sliding
             SlideMovement();
-            if(rb.velocity.magnitude > maxSlideSpeed) {
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSlideSpeed + deltaV);
-            }
         }
     }
 
@@ -184,27 +187,27 @@ public class MikeMovement : MonoBehaviour
         //----------------------------------------------
     }
 
-    void ClampSpeed()
+    void ClampSpeed(float minSpeed, float maxSpeed)
     {
         //limiting speed on slope
         if(OnSlope()) {
-            if(rb.velocity.magnitude > maxWalkSpeed + deltaV) {
-                if(maxWalkSpeed + deltaV < minWalkSpeed) {
-                    rb.velocity = rb.velocity.normalized * minWalkSpeed;
+            if(rb.velocity.magnitude > maxSpeed + deltaV) {
+                if(maxSpeed + deltaV < minSpeed) {
+                    rb.velocity = rb.velocity.normalized * minSpeed;
                 } else {
-                    rb.velocity = rb.velocity.normalized * (maxWalkSpeed + deltaV);
+                    rb.velocity = rb.velocity.normalized * (maxSpeed + deltaV);
                 }
             }
         } else {
             Vector3 currentVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             //if current speed is too high
-            if(currentVelocity.magnitude > maxWalkSpeed + deltaV) {
+            if(currentVelocity.magnitude > maxSpeed + deltaV) {
                 //reduce to max speed and apply
                 Vector3 clampedVelocity;
-                if(maxWalkSpeed + deltaV < minWalkSpeed) {
-                    clampedVelocity = currentVelocity.normalized * minWalkSpeed;    
+                if(maxSpeed + deltaV < minSpeed) {
+                    clampedVelocity = currentVelocity.normalized * minSpeed;    
                 } else {
-                    clampedVelocity = currentVelocity.normalized * (maxWalkSpeed + deltaV);
+                    clampedVelocity = currentVelocity.normalized * (maxSpeed + deltaV);
                 }
                 rb.velocity = new Vector3(clampedVelocity.x, rb.velocity.y, clampedVelocity.z);
             }
@@ -227,37 +230,27 @@ public class MikeMovement : MonoBehaviour
     {
         //go to crouch height, change collider center, startslide
         isSliding = true;
-        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 1f;
-        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
         playerModel.localScale = new Vector3(playerModel.localScale.x, 0.5f, playerModel.localScale.z); //shrink player
         rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); //push player down cause now they're floating a bit since they shrunk from top and bottom
-        //playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y-0.75f, playerCam.transform.position.z);
 
         slideDirection = transform.forward;
+        slideInitialY = transform.position.y;
         //print(slideDirection);
     }
 
     void ExitSlide()
     {
         isSliding = false;
-        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().height = 2f;
-        // transform.GetChild(0).gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
         playerModel.localScale = new Vector3(playerModel.localScale.x, 1f, playerModel.localScale.z);
-        //playerCam.transform.position = new Vector3(playerCam.transform.position.x, playerCam.transform.position.y + 0.75f, playerCam.transform.position.z);
     }
 
     void SlideMovement()
     {
-        float localSlideFriction = slideFriction;
+        slideDeltaY = transform.position.y - slideInitialY;
 
-        //slide duration
-        // slideDuration += Time.deltaTime;
-        // if(slideDuration > 0.75f) {
-        //     localSlideFriction *= (10+slideDuration);
-        // }
-
-        //apply friction
-        rb.AddForce(-slideDirection * slideFriction, ForceMode.Acceleration);
+        //add slide force
+        //apply force with magnitude of movement they already have, but increase if it goes up and vise versa
+        rb.AddForce(slideDirection * rb.velocity.magnitude * (1 - slideDeltaY), ForceMode.Force);
     }
 
     void GroundCheck()
@@ -292,6 +285,9 @@ public class MikeMovement : MonoBehaviour
     Vector3 GetSlopeMoveVector()
     {
         return (Vector3.ProjectOnPlane(movementVector, slopeHit.normal).normalized * moveForce);
+
+        //maybe should work with sliding?
+        //Vector3.ProjectOnPlane(rb.velocity, slopHit.normal).normalized * rb.velocity * magnitude; ?
     }
 
     IEnumerator CoyoteJump()
