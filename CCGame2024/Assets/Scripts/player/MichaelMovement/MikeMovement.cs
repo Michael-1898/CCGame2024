@@ -80,10 +80,6 @@ public class MikeMovement : MonoBehaviour
     {
         //print(OnSlope());
 
-        if(!OnSlope()) {
-            ApplyGravity();
-        }
-
         currentYPosition = transform.position.y;
 
         // print(lastYPosition);
@@ -146,6 +142,10 @@ public class MikeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!OnSlope()) {
+            ApplyGravity();
+        }
+        
         if(!isSliding && !OnSlope()) { //default movement
             rb.AddForce(movementVector, ForceMode.Force);
         } else if(!isSliding && OnSlope()) { //slope movement

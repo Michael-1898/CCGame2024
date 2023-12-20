@@ -210,7 +210,7 @@ MonoBehaviour:
   maxWalkSpeed: 9
   minWalkSpeed: 6
   maxSlopeAngle: 50
-  jumpForce: 10
+  jumpForce: 11
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
   groundLayer:
