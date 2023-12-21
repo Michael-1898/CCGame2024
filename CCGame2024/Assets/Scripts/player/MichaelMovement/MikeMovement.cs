@@ -149,7 +149,7 @@ public class MikeMovement : MonoBehaviour
         if(!isSliding && !OnSlope()) { //default movement
             rb.AddForce(movementVector, ForceMode.Force);
         } else if(!isSliding && OnSlope()) { //slope movement
-            rb.AddForce(GetSlopeMoveVector(), ForceMode.Force);
+            rb.AddForce(GetSlopeMoveVector(movementVector, moveForce), ForceMode.Force);
             
             if(rb.velocity.y > 0) { //downward force while on slope to keep player on it
                 rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
@@ -252,8 +252,10 @@ public class MikeMovement : MonoBehaviour
         slideDeltaY = transform.position.y - slideInitialY;
 
         //if going down, add slide force
-        if(slideDeltaY < 0) {
-            //rb.AddForce(slideDirection * slideForce, ForceMode.Force);
+        if(slideDeltaY < 0 && !OnSlope()) {
+            rb.AddForce(slideDirection * slideForce, ForceMode.Force);
+        } else if(slideDeltaY < 0 && OnSlope()) {
+            rb.AddForce(GetSlopeMoveVector(rb.velocity, slideForce), ForceMode.Force);
         }
     }
 
@@ -286,9 +288,9 @@ public class MikeMovement : MonoBehaviour
         return false;
     }
 
-    Vector3 GetSlopeMoveVector()
+    Vector3 GetSlopeMoveVector(Vector3 vector, float force)
     {
-        return (Vector3.ProjectOnPlane(movementVector, slopeHit.normal).normalized * moveForce);
+        return (Vector3.ProjectOnPlane(vector, slopeHit.normal).normalized * force);
 
         //maybe should work with sliding?
         //Vector3.ProjectOnPlane(rb.velocity, slopHit.normal).normalized * rb.velocity * magnitude; ?
