@@ -156,6 +156,7 @@ public class MikeMovement : MonoBehaviour
             }
         } else if (isSliding) { //if sliding
             SlideMovement();
+            print("sliding");
         }
     }
 
@@ -232,11 +233,12 @@ public class MikeMovement : MonoBehaviour
     {
         //go to crouch height, change collider center, startslide
         isSliding = true;
+        slideInitialY = transform.position.y - 0.5f;
+
         playerModel.localScale = new Vector3(playerModel.localScale.x, 0.5f, playerModel.localScale.z); //shrink player
         rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); //push player down cause now they're floating a bit since they shrunk from top and bottom
 
         slideDirection = transform.forward;
-        slideInitialY = groundCheck.position.y;
         //print(slideDirection);
     }
 
@@ -254,8 +256,12 @@ public class MikeMovement : MonoBehaviour
         //if going down, add slide force
         if(slideDeltaY < 0 && !OnSlope()) {
             rb.AddForce(slideDirection * slideForce, ForceMode.Force);
+            print("adding default slide force");
         } else if(slideDeltaY < 0 && OnSlope()) {
             rb.AddForce(GetSlopeMoveVector(rb.velocity, slideForce), ForceMode.Force);
+            print("adding slope slide force");
+        } else if(slideDeltaY > 0) {
+            ApplyDrag();
         }
     }
 
@@ -306,6 +312,7 @@ public class MikeMovement : MonoBehaviour
     {
         if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
             rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
+            print("dragging");
         }
     }
 
