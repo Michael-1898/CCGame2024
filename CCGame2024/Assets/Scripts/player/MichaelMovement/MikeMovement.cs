@@ -56,6 +56,8 @@ public class MikeMovement : MonoBehaviour
     Transform playerModel;
     float slideDeltaY;
     float slideInitialY;
+    float lastSlideSpeed;
+    [SerializeField] float slideFriction;
 
     //energy conversion
     float lastYPosition;
@@ -132,7 +134,8 @@ public class MikeMovement : MonoBehaviour
 
         //print(maxWalkSpeed + deltaV);
         //print(rb.velocity.magnitude);
-        
+        //print(deltaV);
+
         if(!isSliding) {
             ClampSpeed(minWalkSpeed, maxWalkSpeed);
         } else if(isSliding) {
@@ -156,7 +159,7 @@ public class MikeMovement : MonoBehaviour
             }
         } else if (isSliding) { //if sliding
             SlideMovement();
-            print("sliding");
+            //print("sliding");
         }
     }
 
@@ -240,6 +243,10 @@ public class MikeMovement : MonoBehaviour
 
         slideDirection = transform.forward;
         //print(slideDirection);
+
+        //variable keeps track of the speed of the sliding player the last time they were on a slope.
+        //If they were never on a slope, then tracks speed when they started slide.
+        lastSlideSpeed = rb.velocity.magnitude;
     }
 
     void ExitSlide()
@@ -254,14 +261,31 @@ public class MikeMovement : MonoBehaviour
         slideDeltaY = transform.position.y - slideInitialY;
 
         //if going down, add slide force
-        if(slideDeltaY < 0 && !OnSlope()) {
+        if(rb.velocity.y < -0.1f && !OnSlope()) {
             rb.AddForce(slideDirection * slideForce, ForceMode.Force);
-            print("adding default slide force");
-        } else if(slideDeltaY < 0 && OnSlope()) {
-            rb.AddForce(GetSlopeMoveVector(rb.velocity, slideForce), ForceMode.Force);
-            print("adding slope slide force");
-        } else if(slideDeltaY > 0) {
-            ApplyDrag();
+            //print("adding default slide force");
+
+        } else if(rb.velocity.y < -0.1f && OnSlope()) { //acount for slope
+            rb.AddForce(GetSlopeMoveVector(slideDirection, slideForce), ForceMode.Force);
+            lastSlideSpeed = rb.velocity.magnitude;
+            //print("adding slope slide force");
+
+        } else if(rb.velocity.y > 0.1f && OnSlope()) {//if going up
+            //decrease speed by how steep slope is
+            rb.AddForce(GetSlopeMoveVector(-slideDirection, slideForce * slideDeltaY * 0.25f), ForceMode.Force);
+            lastSlideSpeed = rb.velocity.magnitude;
+            //print("slide up hill");
+
+        } else if(!OnSlope()) {
+            //only subtract velocity like this if slide speed is really high
+            if(rb.velocity.magnitude > maxWalkSpeed + 3) {
+                //keeps velocity/momentum of slide (stops player from slowing down)
+                rb.velocity = rb.velocity.normalized * lastSlideSpeed;
+
+                //decrease velocity/momentum over time (friction)
+                lastSlideSpeed -= (slideFriction * Time.deltaTime);
+                //print("slide friction");
+            }
         }
     }
 
@@ -312,7 +336,7 @@ public class MikeMovement : MonoBehaviour
     {
         if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
             rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
-            print("dragging");
+            //print("dragging");
         }
     }
 
