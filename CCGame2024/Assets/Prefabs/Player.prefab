@@ -220,7 +220,7 @@ MonoBehaviour:
   slideForce: 40
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
-  slideFriction: 5
+  slideFriction: 2
   groundGravityScale: 3
   airGravityScale: 2
 --- !u!54 &1392926919705411862

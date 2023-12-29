@@ -804,11 +804,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1392926919705411857, guid: 9ad1c5457f2e4954e9509ac81d20155c,
-        type: 3}
-      propertyPath: slideFriction
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1392926919705411858, guid: 9ad1c5457f2e4954e9509ac81d20155c,
         type: 3}
       propertyPath: m_RootOrder
