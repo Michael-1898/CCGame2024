@@ -26,48 +26,53 @@ Gravity Notes:
 public class MikeMovement : MonoBehaviour
 {
     //base movement
-    float verticalInput;
-    float horizontalInput;
-    [SerializeField] float moveForce;
-    [SerializeField] Rigidbody rb;
-    Vector3 movementVector;
-    [SerializeField] float maxWalkSpeed;
-    [SerializeField] float minWalkSpeed;
-    [SerializeField] float maxSlopeAngle;
-    RaycastHit slopeHit;
+    [Header("Base Movement")]
+        float verticalInput;
+        float horizontalInput;
+        [SerializeField] float moveForce;
+        [SerializeField] Rigidbody rb;
+        Vector3 movementVector;
+        [SerializeField] float maxWalkSpeed;
+        [SerializeField] float minWalkSpeed;
+        [SerializeField] float maxSlopeAngle;
+        RaycastHit slopeHit;
 
     //jump
-    [SerializeField] float jumpForce;
-    bool isGrounded;
-    Collider[] groundColliders;
-    [SerializeField] Transform groundCheck;
-    [SerializeField] float groundCheckRadius;
-    [SerializeField] LayerMask groundLayer;
-    //coyote jump
-    bool canJump;
-    [SerializeField] float coyoteJumpTime;
+    [Header("Jump")]
+        [SerializeField] float jumpForce;
+        bool isGrounded;
+        Collider[] groundColliders;
+        [SerializeField] Transform groundCheck;
+        [SerializeField] float groundCheckRadius;
+        [SerializeField] LayerMask groundLayer;
+        //coyote jump
+        bool canJump;
+        [SerializeField] float coyoteJumpTime;
 
     //slide
-    bool isSliding = false;
-    [SerializeField] float slideForce;
-    [SerializeField] Camera playerCam;
-    Vector3 slideDirection;
-    [SerializeField] float maxSlideSpeed;
-    Transform playerModel;
-    float slideDeltaY;
-    float slideInitialY;
-    float lastSlideSpeed;
-    [SerializeField] float slideFriction;
+    [Header("Slide")]
+        bool isSliding = false;
+        [SerializeField] float slideForce;
+        [SerializeField] Camera playerCam;
+        Vector3 slideDirection;
+        [SerializeField] float maxSlideSpeed;
+        Transform playerModel;
+        float slideDeltaY;
+        float slideInitialY;
+        float lastSlideSpeed;
+        [SerializeField] float slideFriction;
 
     //energy conversion
-    float lastYPosition;
-    float currentYPosition;
-    float deltaV;
+    [Header("Energy Conservation")]
+        float lastYPosition;
+        float currentYPosition;
+        float deltaV;
 
     //gravity
-    [SerializeField] float groundGravityScale;
-    [SerializeField] float airGravityScale;
-    float gravityScalar;
+    [Header("Gravity")]
+        [SerializeField] float groundGravityScale;
+        [SerializeField] float airGravityScale;
+        float gravityScalar;
 
     // Start is called before the first frame update
     void Start()
