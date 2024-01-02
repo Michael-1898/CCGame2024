@@ -18,6 +18,13 @@ Slide Notes:
 -velocity/momentum is preserved when entering slide, p=mv
 -player presses slide key, start sliding, cotinue sliding until they either slow down enough, jump, or press the slide key again
 
+Wallrunning Notes:
+-check if there is a wall in range and that the player is off the ground
+-find forward vector of wall to direct player's momentum/velocity along that vector
+-once player has started wallrunning, set y-velocity to zero, set lateral velocity to correct/prior momentum/velocity
+-then add force like normal movement, clamping it (might have to do new velocity clamp?), increasing the max speed based on energy transfer like normal
+-apply energy transfer stuff to wallrun?
+
 Gravity Notes:
 -increase gravity so that the player stays grounded, but set the gravity back to normal when they jump or fall
 -no gravity scale with rigidbody, so need to do manual gravity
@@ -61,6 +68,16 @@ public class MikeMovement : MonoBehaviour
         float slideInitialY;
         float lastSlideSpeed;
         [SerializeField] float slideFriction;
+
+    //wallrunning
+    [Header("Wallrunning")]
+        float wallrunMaxSpeed;
+        [SerializeField] LayerMask wallLayer;
+        [SerializeField] float wallCheckDistance;
+        RaycastHit leftWallHit;
+        RaycastHit rightWallHit;
+        bool wallLeft;
+        bool wallRight;
 
     //energy conversion
     [Header("Energy Conservation")]
@@ -278,6 +295,9 @@ public class MikeMovement : MonoBehaviour
         } else if(rb.velocity.y > 0.1f && OnSlope()) {//if going up
             //decrease speed by how steep slope is
             rb.AddForce(GetSlopeMoveVector(-slideDirection, slideForce * slideDeltaY * 0.25f), ForceMode.Force);
+            if(rb.velocity.y < 0.5f) {
+                rb.velocity = Vector3.zero;
+            }
             lastSlideSpeed = rb.velocity.magnitude;
             //print("slide up hill");
 
@@ -341,7 +361,9 @@ public class MikeMovement : MonoBehaviour
     {
         if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
             rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
-            //print("dragging");
+            print("dragging");
+        } else if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude < 1) {
+            rb.velocity = Vector3.zero;
         }
     }
 
