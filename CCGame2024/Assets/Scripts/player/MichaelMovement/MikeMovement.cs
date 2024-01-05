@@ -32,7 +32,6 @@ Gravity Notes:
 
 public class MikeMovement : MonoBehaviour
 {
-    //base movement
     [Header("Base Movement")]
         float verticalInput;
         float horizontalInput;
@@ -43,8 +42,8 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float minWalkSpeed;
         [SerializeField] float maxSlopeAngle;
         RaycastHit slopeHit;
+        [SerializeField] float groundDrag;
 
-    //jump
     [Header("Jump")]
         [SerializeField] float jumpForce;
         bool isGrounded;
@@ -56,7 +55,6 @@ public class MikeMovement : MonoBehaviour
         bool canJump;
         [SerializeField] float coyoteJumpTime;
 
-    //slide
     [Header("Slide")]
         bool isSliding = false;
         [SerializeField] float slideForce;
@@ -69,7 +67,6 @@ public class MikeMovement : MonoBehaviour
         float lastSlideSpeed;
         [SerializeField] float slideFriction;
 
-    //wallrunning
     [Header("Wallrunning")]
         float wallrunMaxSpeed;
         [SerializeField] LayerMask wallLayer;
@@ -79,13 +76,11 @@ public class MikeMovement : MonoBehaviour
         bool wallLeft;
         bool wallRight;
 
-    //energy conversion
     [Header("Energy Conservation")]
         float lastYPosition;
         float currentYPosition;
         float deltaV;
 
-    //gravity
     [Header("Gravity")]
         [SerializeField] float groundGravityScale;
         [SerializeField] float airGravityScale;
@@ -117,8 +112,10 @@ public class MikeMovement : MonoBehaviour
             //print("new y pos");
         }
 
-        if(!isSliding) {
-            ApplyDrag();
+        if(!isSliding && isGrounded) {
+            rb.drag = groundDrag;
+        } else {
+            rb.drag = 0;
         }
 
         if(isGrounded && rb.velocity.magnitude > 0.5f) {
@@ -279,6 +276,9 @@ public class MikeMovement : MonoBehaviour
 
     void SlideMovement()
     {
+        //USE SLIDE FORCE TO DETERMINE HOW MUCH PLAYER SPEEDS UP WHILE GOING DOWN SLOPE
+        //USE SLIDE FRICTION TO DETERMINE HOW MUCH PLAYER SLOWS DOWN WHEN ON FLAT GROUND
+
         //calculate deltaY based on y level from when slide was started
         slideDeltaY = transform.position.y - slideInitialY;
 
@@ -357,15 +357,16 @@ public class MikeMovement : MonoBehaviour
         canJump = false;
     }
 
-    void ApplyDrag()
-    {
-        if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
-            rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
-            print("dragging");
-        } else if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude < 1) {
-            rb.velocity = Vector3.zero;
-        }
-    }
+    // void ApplyDrag()
+    // {
+    //     //ATTEMPT AT MANUAL DRAG:
+    //     if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
+    //         rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
+    //         print("dragging");
+    //     } else if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude < 1) {
+    //         rb.velocity = Vector3.zero;
+    //     }
+    // }
 
     void ApplyGravity()
     {

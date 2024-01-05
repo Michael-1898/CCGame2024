@@ -205,11 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e414c29c2bb4041a6f7b54d5963adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 70
+  moveForce: 112
   rb: {fileID: 1392926919705411862}
   maxWalkSpeed: 9
   minWalkSpeed: 6
   maxSlopeAngle: 50
+  groundDrag: 8
   jumpForce: 11
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
@@ -220,7 +221,11 @@ MonoBehaviour:
   slideForce: 40
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
-  slideFriction: 2
+  slideFriction: 5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallCheckDistance: 0
   groundGravityScale: 3
   airGravityScale: 2
 --- !u!54 &1392926919705411862
