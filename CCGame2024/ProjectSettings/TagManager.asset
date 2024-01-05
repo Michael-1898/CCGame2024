@@ -10,6 +10,7 @@ TagManager:
   - CheckpointReset
   - Key
   - KeyKeep
+  - BridgePieces
   layers:
   - Default
   - TransparentFX
