@@ -68,7 +68,8 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float slideFriction;
 
     [Header("Wallrunning")]
-        float wallrunMaxSpeed;
+        [SerializeField] float wallrunMaxSpeed;
+        [SerializeField] float wallRunForce;
         [SerializeField] float minJumpHeight;
         [SerializeField] LayerMask wallLayer;
         [SerializeField] float wallCheckDistance;
@@ -157,10 +158,12 @@ public class MikeMovement : MonoBehaviour
         }
 
         //wallrunning input
-        // if((wallLeft || wallRight) && verticalInput > 0 && AboveGround()) {
-        //     //start wallrun
-        //     StartWallRun();
-        // }
+        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround()) {
+            //start wallrun
+            StartWallRun();
+        } else if(isWallRunning) {
+            StopWallRun();
+        }
         //if going slow enough, touching ground, or leaves wall, stop wall run
 
         //print(maxWalkSpeed + deltaV);
@@ -182,7 +185,7 @@ public class MikeMovement : MonoBehaviour
         }
 
         //default movement
-        if(!isSliding && !OnSlope()) {
+        if(!isSliding && !OnSlope() && !isWallRunning) {
             rb.AddForce(movementVector, ForceMode.Force);
 
         //slope movement
@@ -201,6 +204,9 @@ public class MikeMovement : MonoBehaviour
         }
 
         //wallrun movement
+        if(isWallRunning) {
+            WallRunMovement();
+        }
     }
 
     void EnergyConservation()
@@ -360,8 +366,12 @@ public class MikeMovement : MonoBehaviour
     
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
+        if((transform.forward - wallForward).magnitude > (transform.forward - -wallForward).magnitude) {
+            wallForward = -wallForward;
+        }
+
         //have player slow down over time, like friction for slide, while wallrunning
-        rb.AddForce(wallForward, ForceMode.Force);
+        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
     }
 
     void GroundCheck()
@@ -417,17 +427,6 @@ public class MikeMovement : MonoBehaviour
         yield return new WaitForSeconds(coyoteJumpTime);
         canJump = false;
     }
-
-    //ATTEMPT AT MANUAL DRAG:
-    // void ApplyDrag()
-    // {
-    //     if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
-    //         rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
-    //         print("dragging");
-    //     } else if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude < 1) {
-    //         rb.velocity = Vector3.zero;
-    //     }
-    // }
 
     void ApplyGravity()
     {
