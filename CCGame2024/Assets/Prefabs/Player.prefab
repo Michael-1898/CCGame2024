@@ -222,6 +222,7 @@ MonoBehaviour:
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
   slideFriction: 5
+  minJumpHeight: 2
   wallLayer:
     serializedVersion: 2
     m_Bits: 0

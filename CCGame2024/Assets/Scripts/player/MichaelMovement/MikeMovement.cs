@@ -69,12 +69,14 @@ public class MikeMovement : MonoBehaviour
 
     [Header("Wallrunning")]
         float wallrunMaxSpeed;
+        [SerializeField] float minJumpHeight;
         [SerializeField] LayerMask wallLayer;
         [SerializeField] float wallCheckDistance;
         RaycastHit leftWallHit;
         RaycastHit rightWallHit;
         bool wallLeft;
         bool wallRight;
+        bool isWallRunning;
 
     [Header("Energy Conservation")]
         float lastYPosition;
@@ -107,11 +109,14 @@ public class MikeMovement : MonoBehaviour
         //ground check switches value of isGrounded and canJump variable
         GroundCheck();
 
+        WallCheck();
+
         if(rb.velocity.magnitude < 0.3f) {
             lastYPosition = transform.position.y;
             //print("new y pos");
         }
 
+        //drag
         if(!isSliding && isGrounded) {
             rb.drag = groundDrag;
         } else {
@@ -151,6 +156,13 @@ public class MikeMovement : MonoBehaviour
             ExitSlide();
         }
 
+        //wallrunning input
+        // if((wallLeft || wallRight) && verticalInput > 0 && AboveGround()) {
+        //     //start wallrun
+        //     StartWallRun();
+        // }
+        //if going slow enough, touching ground, or leaves wall, stop wall run
+
         //print(maxWalkSpeed + deltaV);
         //print(rb.velocity.magnitude);
         //print(deltaV);
@@ -164,22 +176,31 @@ public class MikeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!OnSlope()) {
+        //gravity
+        if(!OnSlope() && !isWallRunning) {
             ApplyGravity();
         }
-        
-        if(!isSliding && !OnSlope()) { //default movement
+
+        //default movement
+        if(!isSliding && !OnSlope()) {
             rb.AddForce(movementVector, ForceMode.Force);
-        } else if(!isSliding && OnSlope()) { //slope movement
+
+        //slope movement
+        } else if(!isSliding && OnSlope()) {
             rb.AddForce(GetSlopeMoveVector(movementVector, moveForce), ForceMode.Force);
             
-            if(rb.velocity.y > 0) { //downward force while on slope to keep player on it
+            if(rb.velocity.y > 0) {
+                //downward force while on slope to keep player on it
                 rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
-        } else if (isSliding) { //if sliding
+
+        //slide movement
+        } else if (isSliding) {
             SlideMovement();
             //print("sliding");
         }
+
+        //wallrun movement
     }
 
     void EnergyConservation()
@@ -314,6 +335,35 @@ public class MikeMovement : MonoBehaviour
         }
     }
 
+    void StartWallRun()
+    {
+        isWallRunning = true;
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+        //conserve momentum/speed
+
+        //if sliding stop slide
+        if(isSliding) {
+            ExitSlide();
+        }
+    }
+
+    void StopWallRun()
+    {
+        isWallRunning = false;
+    }
+
+    void WallRunMovement()
+    {
+        //if wallRight, use wallRightNormal, else use wallLeftNormal
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+    
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
+        //have player slow down over time, like friction for slide, while wallrunning
+        rb.AddForce(wallForward, ForceMode.Force);
+    }
+
     void GroundCheck()
     {
         groundColliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
@@ -332,6 +382,17 @@ public class MikeMovement : MonoBehaviour
                 //print("new y pos");
             }
         }
+    }
+
+    bool AboveGround()
+    {
+        return !Physics.Raycast(transform.position, -transform.up, minJumpHeight, groundLayer);
+    }
+
+    void WallCheck()
+    {
+        wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, wallCheckDistance, wallLayer);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, wallCheckDistance, wallLayer);
     }
 
     bool OnSlope()
@@ -357,9 +418,9 @@ public class MikeMovement : MonoBehaviour
         canJump = false;
     }
 
+    //ATTEMPT AT MANUAL DRAG:
     // void ApplyDrag()
     // {
-    //     //ATTEMPT AT MANUAL DRAG:
     //     if(isGrounded && Mathf.Abs(horizontalInput) < 0.5f && Mathf.Abs(verticalInput) < 0.5f && rb.velocity.magnitude > 1) {
     //         rb.velocity = new Vector3(rb.velocity.x * 0.2f, rb.velocity.y, rb.velocity.z * 0.2f);
     //         print("dragging");
