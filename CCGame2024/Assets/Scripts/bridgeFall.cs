@@ -14,7 +14,6 @@ public class bridgeFall : MonoBehaviour
         buildingsChunks = GameObject.FindGameObjectsWithTag("BridgePieces");
 
         StartCoroutine(fall());
-        
 
     }
 
@@ -26,11 +25,29 @@ public class bridgeFall : MonoBehaviour
 
     IEnumerator fall()
     {
+        var fallOrder = new ArrayList();
+
+        for (int b = 0; b < buildingsChunks.Length; b++)
+        {
+            while (true)
+            {
+                Random r = new Random();
+                int rInt = r.Next(0, buildingsChunks.Length);
+
+                if (!fallOrder.Contains(rInt))
+                {
+                    fallOrder.Add(rInt);
+                    break;
+                }
+            }
+        }
+
         i = 0;
         while (i < buildingsChunks.Length)
         {
             yield return new WaitForSeconds(4);
-            buildingsChunks[i].GetComponent<Rigidbody>().isKinematic = false;
+            int a = (int) fallOrder[i];
+            buildingsChunks[a].GetComponent<Rigidbody>().isKinematic = false;
             i++;
         }
 
