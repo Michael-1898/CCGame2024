@@ -68,7 +68,7 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float slideFriction;
 
     [Header("Wallrunning")]
-        [SerializeField] float wallrunMaxSpeed;
+        [SerializeField] float wallRunFriction;
         [SerializeField] float wallRunForce;
         [SerializeField] float minJumpHeight;
         [SerializeField] LayerMask wallLayer;
@@ -78,6 +78,7 @@ public class MikeMovement : MonoBehaviour
         bool wallLeft;
         bool wallRight;
         bool isWallRunning;
+        float lastWallRunSpeed;
 
     [Header("Energy Conservation")]
         float lastYPosition;
@@ -170,9 +171,9 @@ public class MikeMovement : MonoBehaviour
         //print(rb.velocity.magnitude);
         //print(deltaV);
 
-        if(!isSliding) {
+        if(!isSliding && !isWallRunning) {
             ClampSpeed(minWalkSpeed, maxWalkSpeed);
-        } else if(isSliding) {
+        } else if(isSliding || isWallRunning) {
             ClampSpeed(0, maxSlideSpeed);
         }
     }
@@ -352,6 +353,8 @@ public class MikeMovement : MonoBehaviour
         if(isSliding) {
             ExitSlide();
         }
+
+        lastWallRunSpeed = rb.velocity.magnitude;
     }
 
     void StopWallRun()
@@ -371,7 +374,11 @@ public class MikeMovement : MonoBehaviour
         }
 
         //have player slow down over time, like friction for slide, while wallrunning
-        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+        //keeps speed constant
+        rb.velocity = wallForward.normalized * lastWallRunSpeed;
+
+        //decrease velocity/momentum over time (friction)
+        lastSlideSpeed -= (wallRunFriction * Time.deltaTime);
     }
 
     void GroundCheck()
