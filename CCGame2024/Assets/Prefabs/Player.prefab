@@ -231,6 +231,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   wallCheckDistance: 0.7
+  wallrunCooldown: 0.2
   groundGravityScale: 3
   airGravityScale: 2
 --- !u!54 &1392926919705411862

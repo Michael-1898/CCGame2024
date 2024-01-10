@@ -87,6 +87,7 @@ public class MikeMovement : MonoBehaviour
         bool wallRight;
         bool isWallRunning;
         bool canWallRun;
+        [SerializeField] float wallrunCooldown;
         float lastWallRunSpeed;
 
     [Header("Energy Conservation")]
@@ -178,7 +179,11 @@ public class MikeMovement : MonoBehaviour
             StopWallRun();
             //print("wallrun stopped");
         }
-        //if going slow enough, touching ground, or leaves wall, stop wall run
+        
+        //walljump input
+        if(isWallRunning && Input.GetKeyDown("space")) {
+            WallJump();
+        } 
 
         //print(maxWalkSpeed + deltaV);
         //print(rb.velocity.magnitude);
@@ -408,6 +413,28 @@ public class MikeMovement : MonoBehaviour
             lastWallRunSpeed -= (wallRunFriction * Time.deltaTime);
         }
         //print(lastWallRunSpeed);
+    }
+
+    void WallJump()
+    {
+        gravityScalar = airGravityScale;
+        isWallRunning = false;
+
+        //stop player from immedietely wallrunning again after jumping
+        canWallRun = false;
+        StartCoroutine(WallrunCooldown());
+
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //determine jump direction
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+        Vector3 wallJumpDirection = wallNormal + transform.up;
+        rb.AddForce(wallJumpDirection.normalized * jumpForce, ForceMode.Impulse);
+    }
+
+    IEnumerator WallrunCooldown()
+    {
+        yield return new WaitForSeconds(wallrunCooldown);
+        canWallRun = true;
     }
 
     void GroundCheck()
