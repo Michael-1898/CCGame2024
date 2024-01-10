@@ -78,6 +78,7 @@ public class MikeMovement : MonoBehaviour
         bool wallLeft;
         bool wallRight;
         bool isWallRunning;
+        bool canWallRun;
         float lastWallRunSpeed;
 
     [Header("Energy Conservation")]
@@ -158,12 +159,16 @@ public class MikeMovement : MonoBehaviour
             ExitSlide();
         }
 
+        print(canWallRun);
+
         //wallrunning input
-        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround()) {
+        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !isWallRunning && canWallRun) {
             //start wallrun
             StartWallRun();
-        } else if(isWallRunning) {
+            print("wallrun started");
+        } else if((lastWallRunSpeed < 0.1f || verticalInput < 0.1f || !AboveGround() || !(wallLeft || wallRight)) && isWallRunning) {
             StopWallRun();
+            print("wallrun stopped");
         }
         //if going slow enough, touching ground, or leaves wall, stop wall run
 
@@ -206,7 +211,8 @@ public class MikeMovement : MonoBehaviour
 
         //wallrun movement
         if(isWallRunning) {
-            WallRunMovement();
+            //WallRunMovement();
+            //print("wallrunning");
         }
     }
 
@@ -345,7 +351,7 @@ public class MikeMovement : MonoBehaviour
     void StartWallRun()
     {
         isWallRunning = true;
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
         //conserve momentum/speed
 
@@ -354,12 +360,14 @@ public class MikeMovement : MonoBehaviour
             ExitSlide();
         }
 
-        lastWallRunSpeed = rb.velocity.magnitude;
+        lastWallRunSpeed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
     }
 
     void StopWallRun()
     {
         isWallRunning = false;
+        canWallRun = false;
+        //rb.velocity = Vector3.zero;
     }
 
     void WallRunMovement()
@@ -378,7 +386,8 @@ public class MikeMovement : MonoBehaviour
         rb.velocity = wallForward.normalized * lastWallRunSpeed;
 
         //decrease velocity/momentum over time (friction)
-        lastSlideSpeed -= (wallRunFriction * Time.deltaTime);
+        lastWallRunSpeed -= (wallRunFriction * Time.deltaTime);
+        //print(lastWallRunSpeed);
     }
 
     void GroundCheck()
@@ -397,6 +406,10 @@ public class MikeMovement : MonoBehaviour
             if(rb.velocity.magnitude < 0.3f) {
                 lastYPosition = transform.position.y;
                 //print("new y pos");
+            }
+
+            if(!canWallRun) {
+                canWallRun = true;
             }
         }
     }
