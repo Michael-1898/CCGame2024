@@ -76,6 +76,7 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float wallRunFriction;
         //speed at which wallrun friction will begin to increase
         [SerializeField] float wallFrictionSpeed;
+        [SerializeField] float wallRunGravity;
         [SerializeField] float wallRunForce;
         [SerializeField] float minJumpHeight;
         [SerializeField] LayerMask wallLayer;
@@ -173,7 +174,7 @@ public class MikeMovement : MonoBehaviour
             //start wallrun
             StartWallRun();
             //print("wallrun started");
-        } else if((lastWallRunSpeed < 0.1f || verticalInput < 0.1f || isGrounded || !(wallLeft || wallRight)) && isWallRunning) {
+        } else if((verticalInput < 0.1f || isGrounded || !(wallLeft || wallRight)) && isWallRunning) {
             StopWallRun();
             //print("wallrun stopped");
         }
@@ -374,7 +375,6 @@ public class MikeMovement : MonoBehaviour
     {
         isWallRunning = false;
         canWallRun = false;
-        //rb.velocity = Vector3.zero;
     }
 
     void WallRunMovement()
@@ -390,12 +390,21 @@ public class MikeMovement : MonoBehaviour
 
         //have player slow down over time, like friction for slide, while wallrunning
         //keeps speed constant
-        rb.velocity = wallForward.normalized * lastWallRunSpeed;
+        if(lastWallRunSpeed > 0.1f) {
+            //rb.velocity = wallForward.normalized * lastWallRunSpeed;
+            rb.velocity = new Vector3(wallForward.normalized.x * lastWallRunSpeed, rb.velocity.y, wallForward.normalized.z * lastWallRunSpeed);
+        } else if(lastWallRunSpeed < 0.1f) {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+        
+        //wallrun gravity
+        //gravity proportional to speed? (if high speed, lower gravity?)
+        rb.AddForce(-transform.up * wallRunGravity, ForceMode.Acceleration);
 
         //decrease velocity/momentum over time (friction)
-        if(lastWallRunSpeed < wallFrictionSpeed) {
+        if(lastWallRunSpeed < wallFrictionSpeed && lastWallRunSpeed > 0.1f) {
             lastWallRunSpeed -= (1.5f * (wallFrictionSpeed-lastWallRunSpeed) * wallRunFriction * Time.deltaTime);
-        } else {
+        } else if(lastWallRunSpeed > 0.1f) {
             lastWallRunSpeed -= (wallRunFriction * Time.deltaTime);
         }
         //print(lastWallRunSpeed);
@@ -421,6 +430,9 @@ public class MikeMovement : MonoBehaviour
 
             if(!canWallRun) {
                 canWallRun = true;
+            }
+            if(isWallRunning) {
+                isWallRunning = false;
             }
         }
     }

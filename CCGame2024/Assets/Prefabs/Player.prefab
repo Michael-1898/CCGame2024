@@ -224,6 +224,7 @@ MonoBehaviour:
   slideFriction: 5
   wallRunFriction: 4
   wallFrictionSpeed: 7
+  wallRunGravity: 0.7
   wallRunForce: 100
   minJumpHeight: 2
   wallLayer:
