@@ -28,6 +28,11 @@ Wallrunning Notes:
 Gravity Notes:
 -increase gravity so that the player stays grounded, but set the gravity back to normal when they jump or fall
 -no gravity scale with rigidbody, so need to do manual gravity
+
+Speed Clamp Notes:
+-potential way to cap speed without directly setting velocity (only using forces):
+-rigidbody.AddForce(targetSpeed - rigidbody.velocity, ForceMode.Velocity)
+-by subtracting target speed by the current velocity, this does the same thing as changing the velocity directly without the flaws of doing so
 */
 
 public class MikeMovement : MonoBehaviour
@@ -69,6 +74,8 @@ public class MikeMovement : MonoBehaviour
 
     [Header("Wallrunning")]
         [SerializeField] float wallRunFriction;
+        //speed at which wallrun friction will begin to increase
+        [SerializeField] float wallFrictionSpeed;
         [SerializeField] float wallRunForce;
         [SerializeField] float minJumpHeight;
         [SerializeField] LayerMask wallLayer;
@@ -136,8 +143,8 @@ public class MikeMovement : MonoBehaviour
 
         //get movement input
         if(!isSliding) {
-            verticalInput = Input.GetAxis("Vertical");
-            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
             //print("V: " + verticalInput);
             //print("H: " + horizontalInput);
             movementVector = (transform.forward * verticalInput) + (transform.right * horizontalInput).normalized;
@@ -159,16 +166,16 @@ public class MikeMovement : MonoBehaviour
             ExitSlide();
         }
 
-        print(canWallRun);
+        //print(canWallRun);
 
         //wallrunning input
-        if((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !isWallRunning && canWallRun) {
+        if((wallLeft || wallRight) && verticalInput > 0.1f && AboveGround() && !isWallRunning && canWallRun) {
             //start wallrun
             StartWallRun();
-            print("wallrun started");
-        } else if((lastWallRunSpeed < 0.1f || verticalInput < 0.1f || !AboveGround() || !(wallLeft || wallRight)) && isWallRunning) {
+            //print("wallrun started");
+        } else if((lastWallRunSpeed < 0.1f || verticalInput < 0.1f || isGrounded || !(wallLeft || wallRight)) && isWallRunning) {
             StopWallRun();
-            print("wallrun stopped");
+            //print("wallrun stopped");
         }
         //if going slow enough, touching ground, or leaves wall, stop wall run
 
@@ -193,9 +200,10 @@ public class MikeMovement : MonoBehaviour
         //default movement
         if(!isSliding && !OnSlope() && !isWallRunning) {
             rb.AddForce(movementVector, ForceMode.Force);
+            print("default movement");
 
         //slope movement
-        } else if(!isSliding && OnSlope()) {
+        } else if(!isSliding && OnSlope() && !isWallRunning) {
             rb.AddForce(GetSlopeMoveVector(movementVector, moveForce), ForceMode.Force);
             
             if(rb.velocity.y > 0) {
@@ -204,15 +212,14 @@ public class MikeMovement : MonoBehaviour
             }
 
         //slide movement
-        } else if (isSliding) {
+        } else if (isSliding && !isWallRunning) {
             SlideMovement();
             //print("sliding");
-        }
 
-        //wallrun movement
-        if(isWallRunning) {
-            //WallRunMovement();
-            //print("wallrunning");
+        //wallrun movement    
+        } else if(isWallRunning) {
+            WallRunMovement();
+            print("wallrunning");
         }
     }
 
@@ -351,7 +358,7 @@ public class MikeMovement : MonoBehaviour
     void StartWallRun()
     {
         isWallRunning = true;
-        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
         //conserve momentum/speed
 
@@ -386,7 +393,11 @@ public class MikeMovement : MonoBehaviour
         rb.velocity = wallForward.normalized * lastWallRunSpeed;
 
         //decrease velocity/momentum over time (friction)
-        lastWallRunSpeed -= (wallRunFriction * Time.deltaTime);
+        if(lastWallRunSpeed < wallFrictionSpeed) {
+            lastWallRunSpeed -= (1.5f * (wallFrictionSpeed-lastWallRunSpeed) * wallRunFriction * Time.deltaTime);
+        } else {
+            lastWallRunSpeed -= (wallRunFriction * Time.deltaTime);
+        }
         //print(lastWallRunSpeed);
     }
 

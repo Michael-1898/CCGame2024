@@ -210,7 +210,7 @@ MonoBehaviour:
   maxWalkSpeed: 9
   minWalkSpeed: 6
   maxSlopeAngle: 50
-  groundDrag: 8
+  groundDrag: 5
   jumpForce: 15
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
@@ -222,7 +222,8 @@ MonoBehaviour:
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
   slideFriction: 5
-  wallRunFriction: 2
+  wallRunFriction: 4
+  wallFrictionSpeed: 7
   wallRunForce: 100
   minJumpHeight: 2
   wallLayer:
