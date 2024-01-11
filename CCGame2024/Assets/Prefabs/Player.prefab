@@ -211,7 +211,7 @@ MonoBehaviour:
   minWalkSpeed: 6
   maxSlopeAngle: 50
   groundDrag: 5
-  jumpForce: 15
+  jumpForce: 12
   groundCheck: {fileID: 1392926919542335571}
   groundCheckRadius: 0.5
   groundLayer:
@@ -229,7 +229,7 @@ MonoBehaviour:
   minJumpHeight: 2
   wallLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2560
   wallCheckDistance: 0.7
   wallrunCooldown: 0.2
   groundGravityScale: 3
