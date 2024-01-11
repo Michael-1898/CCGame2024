@@ -207,7 +207,7 @@ public class MikeMovement : MonoBehaviour
         //default movement
         if(!isSliding && !OnSlope() && !isWallRunning) {
             rb.AddForce(movementVector, ForceMode.Force);
-            print("default movement");
+            //print("default movement");
 
         //slope movement
         } else if(!isSliding && OnSlope() && !isWallRunning) {
@@ -226,7 +226,7 @@ public class MikeMovement : MonoBehaviour
         //wallrun movement    
         } else if(isWallRunning) {
             WallRunMovement();
-            print("wallrunning");
+            //print("wallrunning");
         }
     }
 
