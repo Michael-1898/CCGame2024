@@ -48,6 +48,7 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float maxSlopeAngle;
         RaycastHit slopeHit;
         [SerializeField] float groundDrag;
+        [SerializeField] Collider playerCollider;
 
     [Header("Jump")]
         [SerializeField] float jumpForce;
@@ -444,12 +445,22 @@ public class MikeMovement : MonoBehaviour
             //in air
             isGrounded = false;
             gravityScalar = airGravityScale;
+            //apply frictionless physics material
+            playerCollider.material.dynamicFriction = 0;
+            playerCollider.material.staticFriction = 0;
+            playerCollider.material.frictionCombine = PhysicMaterialCombine.Minimum;
             StartCoroutine(CoyoteJump());
         } else if(groundColliders.Length != 0 && (!isGrounded || !canJump)) {
             //on ground
             isGrounded = true;
             canJump = true;
             gravityScalar = groundGravityScale;
+            //apply default physics material
+            playerCollider.material.dynamicFriction = 0.6f;
+            playerCollider.material.staticFriction = 0.6f;
+            playerCollider.material.frictionCombine = PhysicMaterialCombine.Average;
+
+            //for energy transfer
             if(rb.velocity.magnitude < 0.3f) {
                 lastYPosition = transform.position.y;
                 //print("new y pos");

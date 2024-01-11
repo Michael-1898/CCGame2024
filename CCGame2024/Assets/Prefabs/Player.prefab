@@ -139,7 +139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392926919542335572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.60000014, z: 0}
+  m_LocalPosition: {x: 0, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8877423557529418434}
@@ -211,9 +211,10 @@ MonoBehaviour:
   minWalkSpeed: 6
   maxSlopeAngle: 50
   groundDrag: 5
+  playerCollider: {fileID: 5994456656345635643}
   jumpForce: 12
   groundCheck: {fileID: 1392926919542335571}
-  groundCheckRadius: 0.3
+  groundCheckRadius: 0.4
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
