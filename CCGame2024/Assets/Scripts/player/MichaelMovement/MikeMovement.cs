@@ -218,6 +218,7 @@ public class MikeMovement : MonoBehaviour
                 //downward force while on slope to keep player on it
                 rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
+            //print("slope movement");
 
         //slide movement
         } else if (isSliding && !isWallRunning) {
@@ -279,7 +280,8 @@ public class MikeMovement : MonoBehaviour
                 //reduce to max speed and apply
                 Vector3 clampedVelocity;
                 if(maxSpeed + deltaV < minSpeed) {
-                    clampedVelocity = currentVelocity.normalized * minSpeed;    
+                    clampedVelocity = currentVelocity.normalized * minSpeed;
+                    print("bogus");
                 } else {
                     clampedVelocity = currentVelocity.normalized * (maxSpeed + deltaV);
                 }
