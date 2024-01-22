@@ -281,7 +281,6 @@ public class MikeMovement : MonoBehaviour
                 Vector3 clampedVelocity;
                 if(maxSpeed + deltaV < minSpeed) {
                     clampedVelocity = currentVelocity.normalized * minSpeed;
-                    print("bogus");
                 } else {
                     clampedVelocity = currentVelocity.normalized * (maxSpeed + deltaV);
                 }
