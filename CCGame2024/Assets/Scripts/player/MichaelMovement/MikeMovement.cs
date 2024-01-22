@@ -22,8 +22,9 @@ Wallrunning Notes:
 -check if there is a wall in range and that the player is off the ground
 -find forward vector of wall to direct player's momentum/velocity along that vector
 -once player has started wallrunning, set y-velocity to zero, set lateral velocity to correct/prior momentum/velocity
--then add force like normal movement, clamping it (might have to do new velocity clamp?), increasing the max speed based on energy transfer like normal
--apply energy transfer stuff to wallrun?
+-then add force like normal movement, clamping it
+-have player slow down over time while wallrunning, like how slide slows down
+-create wall jump
 
 Gravity Notes:
 -increase gravity so that the player stays grounded, but set the gravity back to normal when they jump or fall
@@ -184,7 +185,7 @@ public class MikeMovement : MonoBehaviour
         //walljump input
         if(isWallRunning && Input.GetKeyDown("space")) {
             WallJump();
-        } 
+        }
 
         //print(maxWalkSpeed + deltaV);
         //print(rb.velocity.magnitude);
@@ -217,6 +218,7 @@ public class MikeMovement : MonoBehaviour
                 //downward force while on slope to keep player on it
                 rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
+            //print("slope movement");
 
         //slide movement
         } else if (isSliding && !isWallRunning) {
@@ -278,7 +280,8 @@ public class MikeMovement : MonoBehaviour
                 //reduce to max speed and apply
                 Vector3 clampedVelocity;
                 if(maxSpeed + deltaV < minSpeed) {
-                    clampedVelocity = currentVelocity.normalized * minSpeed;    
+                    clampedVelocity = currentVelocity.normalized * minSpeed;
+                    print("bogus");
                 } else {
                     clampedVelocity = currentVelocity.normalized * (maxSpeed + deltaV);
                 }
@@ -395,6 +398,7 @@ public class MikeMovement : MonoBehaviour
         }
 
         //have player slow down over time, like friction for slide, while wallrunning
+
         //keeps speed constant
         if(lastWallRunSpeed > 0.1f) {
             //rb.velocity = wallForward.normalized * lastWallRunSpeed;

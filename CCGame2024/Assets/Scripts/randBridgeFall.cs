@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bridgeFall : MonoBehaviour
+public class randBridgeFall : MonoBehaviour
 {
-    public GameObject[] buildingsChunks;
+   public GameObject[] buildingsChunks;
 
     private float time;
     private int i;
