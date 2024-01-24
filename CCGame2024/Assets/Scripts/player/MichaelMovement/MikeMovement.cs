@@ -191,7 +191,7 @@ public class MikeMovement : MonoBehaviour
         //print(rb.velocity.magnitude);
         //print(deltaV);
 
-        if(!isSliding && !isWallRunning) {
+        if(!isSliding && !isWallRunning /*&& horizontalInput > 0 && verticalInput > 0*/) {
             ClampSpeed(minWalkSpeed, maxWalkSpeed);
         } else if(isSliding || isWallRunning) {
             ClampSpeed(0, maxSlideSpeed);
@@ -264,7 +264,7 @@ public class MikeMovement : MonoBehaviour
 
     void ClampSpeed(float minSpeed, float maxSpeed)
     {
-        //limiting speed on slope
+        //limiting speed on slope (should turn off if jumping)
         if(OnSlope()) {
             if(rb.velocity.magnitude > maxSpeed + deltaV) {
                 if(maxSpeed + deltaV < minSpeed) {
@@ -281,6 +281,7 @@ public class MikeMovement : MonoBehaviour
                 Vector3 clampedVelocity;
                 if(maxSpeed + deltaV < minSpeed) {
                     clampedVelocity = currentVelocity.normalized * minSpeed;
+                    //print("clamping to: " + clampedVelocity.magnitude);
                 } else {
                     clampedVelocity = currentVelocity.normalized * (maxSpeed + deltaV);
                 }
@@ -308,7 +309,9 @@ public class MikeMovement : MonoBehaviour
         slideInitialY = transform.position.y - 0.5f;
 
         playerModel.localScale = new Vector3(playerModel.localScale.x, 0.5f, playerModel.localScale.z); //shrink player
-        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); //push player down cause now they're floating a bit since they shrunk from top and bottom
+        if(isGrounded) {
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); //push player down cause now they're floating a bit since they shrunk from top and bottom
+        }
 
         slideDirection = transform.forward;
         //print(slideDirection);
@@ -474,6 +477,7 @@ public class MikeMovement : MonoBehaviour
             }
             if(isWallRunning) {
                 isWallRunning = false;
+                lastYPosition = transform.position.y;
             }
         }
     }
