@@ -26,6 +26,7 @@ public class Checkpoint : MonoBehaviour
         if (col.gameObject.tag == "Respawn" && dieOnFall == true)
         {
             transform.position = position;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
