@@ -6,27 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scripts/Scenes/StartScene.unity
+    path: Assets/Scenes/StartScene.unity
     guid: f49c4f9b288904dfa8872f06329f0a8d
   - enabled: 1
-    path: Assets/Scripts/Scenes/IntroScene.unity
+    path: Assets/Scenes/IntroScene.unity
     guid: a1019b7337b7042459742ba3c2179db6
   - enabled: 1
-    path: Assets/Scripts/Scenes/CityScene.unity
+    path: Assets/Scenes/CityScene.unity
     guid: 35ac28fb036926441a574f7833ec2875
   - enabled: 1
-    path: Assets/Scripts/Scenes/KadenScene.unity
+    path: Assets/Scenes/KadenScene.unity
     guid: 3b48ca488c8f44d46a631906985ddb50
   - enabled: 1
-    path: Assets/Scripts/Scenes/MichaelScene.unity
+    path: Assets/Scenes/MichaelScene.unity
     guid: a4340c9cc0f018d4aa754d6ed9525cca
   - enabled: 1
-    path: Assets/Scripts/Scenes/JohnScene.unity
+    path: Assets/Scenes/JohnScene.unity
     guid: df19e897a0c0a9046be0970fd888d035
   - enabled: 1
-    path: Assets/Scripts/Scenes/EricScene.unity
+    path: Assets/Scenes/EricScene.unity
     guid: 4c0af7a529aa9054999c81fbb9f260b2
   - enabled: 1
-    path: Assets/Scripts/Scenes/LeahScene.unity
+    path: Assets/Scenes/LeahScene.unity
     guid: b87ad4f1c11834247ae3544d0b7850b9
   m_configObjects: {}
