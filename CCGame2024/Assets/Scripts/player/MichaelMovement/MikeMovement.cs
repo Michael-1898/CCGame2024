@@ -92,6 +92,8 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float wallrunCooldown;
         float lastWallRunSpeed;
         bool wallJumped = false;
+        string lastWallName;
+        [SerializeField] float sameWallCooldown;
 
     [Header("Energy Conservation")]
         float lastYPosition;
@@ -431,21 +433,31 @@ public class MikeMovement : MonoBehaviour
         isWallRunning = false;
         wallJumped = true;
 
-        //stop player from immedietely wallrunning again after jumping
-        canWallRun = false;
-        StartCoroutine(WallrunCooldown());
+        //save last wall name
+        lastWallName = wallRight ? rightWallHit.collider.gameObject.name : leftWallHit.collider.gameObject.name;
 
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         //determine jump direction
         Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
         Vector3 wallJumpDirection = wallNormal + transform.up;
         rb.AddForce(wallJumpDirection.normalized * jumpForce, ForceMode.Impulse);
+
+        //stop player from immedietely wallrunning again after jumping
+        canWallRun = false;
+        StartCoroutine(WallrunCooldown());
     }
 
     IEnumerator WallrunCooldown()
     {
         yield return new WaitForSeconds(wallrunCooldown);
         canWallRun = true;
+
+        //remove last wall name after cooldown, so player can jump on that wall again
+        string lastWallName1 = lastWallName;
+        yield return new WaitForSeconds(sameWallCooldown - wallrunCooldown);
+        if(lastWallName == lastWallName1) {
+            lastWallName = "";
+        }
     }
 
     void GroundCheck()
@@ -483,6 +495,7 @@ public class MikeMovement : MonoBehaviour
                 lastYPosition = transform.position.y;
                 //print("new y pos");
                 wallJumped = false;
+                lastWallName = "";
             }
 
             if(isSliding) {
@@ -501,6 +514,19 @@ public class MikeMovement : MonoBehaviour
     {
         wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, wallCheckDistance, wallLayer);
         wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, wallCheckDistance, wallLayer);
+
+        //if either hit matches the last wall name, set the bools to false
+        //stops player from wallrunning on same wall over and over
+        if(wallRight && lastWallName != null) {
+            if(rightWallHit.collider.gameObject.name == lastWallName) {
+                wallRight = false;
+            }
+        }
+        if(wallLeft && lastWallName != null) {
+            if(leftWallHit.collider.gameObject.name == lastWallName) {
+                wallLeft = false;
+            }
+        }
     }
 
     bool OnSlope()
