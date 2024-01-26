@@ -91,6 +91,7 @@ public class MikeMovement : MonoBehaviour
         bool canWallRun;
         [SerializeField] float wallrunCooldown;
         float lastWallRunSpeed;
+        bool wallJumped = false;
 
     [Header("Energy Conservation")]
         float lastYPosition;
@@ -334,6 +335,7 @@ public class MikeMovement : MonoBehaviour
 
         //calculate deltaY based on y level from when slide was started
         slideDeltaY = transform.position.y - slideInitialY;
+        lastSlideSpeed = rb.velocity.magnitude;
 
         //if going down, add slide force
         if(rb.velocity.y < -0.1f && !OnSlope()) {
@@ -369,6 +371,7 @@ public class MikeMovement : MonoBehaviour
 
     void StartWallRun()
     {
+        wallJumped = false;
         isWallRunning = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
@@ -426,6 +429,7 @@ public class MikeMovement : MonoBehaviour
     {
         gravityScalar = airGravityScale;
         isWallRunning = false;
+        wallJumped = true;
 
         //stop player from immedietely wallrunning again after jumping
         canWallRun = false;
@@ -475,9 +479,15 @@ public class MikeMovement : MonoBehaviour
             if(!canWallRun) {
                 canWallRun = true;
             }
-            if(isWallRunning) {
-                isWallRunning = false;
+            if(wallJumped) {
                 lastYPosition = transform.position.y;
+                //print("new y pos");
+                wallJumped = false;
+            }
+
+            if(isSliding) {
+                //preserve slide speed
+                rb.velocity = GetSlopeMoveVector(rb.velocity, lastSlideSpeed);
             }
         }
     }
