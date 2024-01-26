@@ -8,6 +8,7 @@ public class randBridgeFall : MonoBehaviour
 
     private float time;
     private int i;
+    private int e;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +39,27 @@ public class randBridgeFall : MonoBehaviour
         }
 
         i = 0;
+        e = 0;
         while (i < buildingsChunks.Length)
         {
-            yield return new WaitForSeconds(2);
-            int a = (int) fallOrder[i];
-            buildingsChunks[a].GetComponent<Rigidbody>().isKinematic = false;
-            i++;
+            yield return new WaitForSeconds(1);
+            for (int c = 0; c < 5; c++)
+            {
+                int d = (int) fallOrder[e];
+                MeshRenderer[] mR = buildingsChunks[d].GetComponentsInChildren<MeshRenderer>();
+                for (int f = 0; f < 5; f++)
+                {
+                    mR[f].material.color = new Color(0, 204, 102);
+                }
+                e++;
+            }
+            yield return new WaitForSeconds(1);
+            for (int b = 0; b < 5; b++)
+            {
+                int a = (int) fallOrder[i];
+                buildingsChunks[a].GetComponent<Rigidbody>().isKinematic = false;
+                i++;
+            }
         }
 
     }
