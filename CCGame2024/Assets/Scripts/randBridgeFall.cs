@@ -47,9 +47,9 @@ public class randBridgeFall : MonoBehaviour
             {
                 int d = (int) fallOrder[e];
                 MeshRenderer[] mR = buildingsChunks[d].GetComponentsInChildren<MeshRenderer>();
-                for (int f = 0; f < 5; f++)
+                for (int f = 0; f < 4; f++)
                 {
-                    mR[f].material.color = new Color(0, 204, 102);
+                    mR[f].material.color = new Color(255, 0, 0);
                 }
                 e++;
             }
