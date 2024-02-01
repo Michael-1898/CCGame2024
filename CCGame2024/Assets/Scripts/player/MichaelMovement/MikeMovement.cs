@@ -169,8 +169,10 @@ public class MikeMovement : MonoBehaviour
             StartSlide();
         } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
             ExitSlide();
-        } else if(isSliding && rb.velocity.magnitude < 1) {
+        } else if(isSliding && rb.velocity.magnitude < 1) { //if slide slows down enough
             ExitSlide();
+            lastYPosition = transform.position.y;
+            //new y pos
         }
 
         //print(canWallRun);
@@ -194,7 +196,7 @@ public class MikeMovement : MonoBehaviour
         //print(rb.velocity.magnitude);
         //print(deltaV);
 
-        if(!isSliding && !isWallRunning /*&& horizontalInput > 0 && verticalInput > 0*/) {
+        if(!isSliding && !isWallRunning && movementVector.magnitude > 0.3f) {
             ClampSpeed(minWalkSpeed, maxWalkSpeed);
         } else if(isSliding || isWallRunning) {
             ClampSpeed(0, maxSlideSpeed);
@@ -492,7 +494,7 @@ public class MikeMovement : MonoBehaviour
                 canWallRun = true;
             }
             if(wallJumped) {
-                lastYPosition = transform.position.y;
+                //lastYPosition = transform.position.y;
                 //print("new y pos");
                 wallJumped = false;
                 lastWallName = "";
