@@ -161,6 +161,7 @@ public class MikeMovement : MonoBehaviour
 
         //get jump input
         if(Input.GetKeyDown("space") && isGrounded && canJump) {
+            print("jump");
             Jump();
         }
 
@@ -222,7 +223,7 @@ public class MikeMovement : MonoBehaviour
             
             if(rb.velocity.y > 0) {
                 //downward force while on slope to keep player on it
-                rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
+                //rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
             //print("slope movement");
 
@@ -271,7 +272,7 @@ public class MikeMovement : MonoBehaviour
     void ClampSpeed(float minSpeed, float maxSpeed)
     {
         //limiting speed on slope (should turn off if jumping)
-        if(OnSlope()) {
+        if(OnSlope() && canJump) {
             if(rb.velocity.magnitude > maxSpeed + deltaV) {
                 if(maxSpeed + deltaV < minSpeed) {
                     rb.velocity = rb.velocity.normalized * minSpeed;
@@ -298,14 +299,14 @@ public class MikeMovement : MonoBehaviour
 
     void Jump()
     {
+        if(isSliding) {
+            ExitSlide();
+        }
+
         gravityScalar = airGravityScale;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         canJump = false;
-
-        if(isSliding) {
-            ExitSlide();
-        }
     }
 
     void StartSlide()
