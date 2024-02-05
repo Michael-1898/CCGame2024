@@ -169,8 +169,10 @@ public class MikeMovement : MonoBehaviour
             StartSlide();
         } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
             ExitSlide();
-        } else if(isSliding && rb.velocity.magnitude < 1) {
+        } else if(isSliding && rb.velocity.magnitude < 1) { //if slide slows down enough
             ExitSlide();
+            lastYPosition = transform.position.y;
+            //new y pos
         }
 
         //print(canWallRun);
@@ -194,7 +196,8 @@ public class MikeMovement : MonoBehaviour
         //print(rb.velocity.magnitude);
         //print(deltaV);
 
-        if(!isSliding && !isWallRunning /*&& horizontalInput > 0 && verticalInput > 0*/) {
+        //if !sliding, !wallrunning, movement input is none, (maybe add isGrounded too), then clamp speed
+        if(!isSliding && !isWallRunning && movementVector.magnitude > 0.3f) {
             ClampSpeed(minWalkSpeed, maxWalkSpeed);
         } else if(isSliding || isWallRunning) {
             ClampSpeed(0, maxSlideSpeed);
@@ -322,12 +325,15 @@ public class MikeMovement : MonoBehaviour
         //variable keeps track of the speed of the sliding player the last time they were on a slope.
         //If they were never on a slope, then tracks speed when they started slide.
         lastSlideSpeed = rb.velocity.magnitude;
+
+        ApplyMaterial("frictionless");
     }
 
     void ExitSlide()
     {
         isSliding = false;
         playerModel.localScale = new Vector3(playerModel.localScale.x, 1f, playerModel.localScale.z);
+        ApplyMaterial("normal");
     }
 
     void SlideMovement()
@@ -359,14 +365,17 @@ public class MikeMovement : MonoBehaviour
             //print("slide up hill");
 
         } else if(!OnSlope()) {
-            //only subtract velocity like this if slide speed is really high
-            if(rb.velocity.magnitude > maxWalkSpeed + 3) {
-                //keeps velocity/momentum of slide (stops player from slowing down)
-                rb.velocity = rb.velocity.normalized * lastSlideSpeed;
+            //decrease velocity/momentum over time (friction)
+            lastSlideSpeed -= (slideFriction * Time.deltaTime);
+            //print("slide friction");
+            //print(lastSlideSpeed);
 
-                //decrease velocity/momentum over time (friction)
-                lastSlideSpeed -= (slideFriction * Time.deltaTime);
-                //print("slide friction");
+            //keeps velocity/momentum of slide (stops player from slowing down)
+            rb.velocity = rb.velocity.normalized * lastSlideSpeed;
+
+            if(rb.velocity.magnitude < minWalkSpeed) {
+                ApplyMaterial("normal");
+                print("normal physics mat");
             }
         }
     }
@@ -468,9 +477,7 @@ public class MikeMovement : MonoBehaviour
             isGrounded = false;
             gravityScalar = airGravityScale;
             //apply frictionless physics material
-            playerCollider.material.dynamicFriction = 0;
-            playerCollider.material.staticFriction = 0;
-            playerCollider.material.frictionCombine = PhysicMaterialCombine.Minimum;
+            ApplyMaterial("frictionless");
             StartCoroutine(CoyoteJump());
         } else if(groundColliders.Length != 0 && (!isGrounded || !canJump)) {
             //on ground
@@ -478,9 +485,9 @@ public class MikeMovement : MonoBehaviour
             canJump = true;
             gravityScalar = groundGravityScale;
             //apply default physics material
-            playerCollider.material.dynamicFriction = 0.6f;
-            playerCollider.material.staticFriction = 0.6f;
-            playerCollider.material.frictionCombine = PhysicMaterialCombine.Average;
+            if(!isSliding) {
+                ApplyMaterial("normal");
+            }
 
             //for energy transfer
             if(rb.velocity.magnitude < 0.3f) {
@@ -492,7 +499,7 @@ public class MikeMovement : MonoBehaviour
                 canWallRun = true;
             }
             if(wallJumped) {
-                lastYPosition = transform.position.y;
+                //lastYPosition = transform.position.y;
                 //print("new y pos");
                 wallJumped = false;
                 lastWallName = "";
@@ -501,6 +508,7 @@ public class MikeMovement : MonoBehaviour
             if(isSliding) {
                 //preserve slide speed
                 rb.velocity = GetSlopeMoveVector(rb.velocity, lastSlideSpeed);
+                //print("preserving slide momentum");
             }
         }
     }
@@ -555,6 +563,21 @@ public class MikeMovement : MonoBehaviour
     void ApplyGravity()
     {
         rb.AddForce(Physics.gravity * gravityScalar, ForceMode.Acceleration);
+    }
+
+    void ApplyMaterial(string type)
+    {
+        if(type == "frictionless") {
+            //apply frictionless physics material
+            playerCollider.material.dynamicFriction = 0;
+            playerCollider.material.staticFriction = 0;
+            playerCollider.material.frictionCombine = PhysicMaterialCombine.Minimum;
+        } else if(type == "normal") {
+            //apply default physics material
+            playerCollider.material.dynamicFriction = 0.6f;
+            playerCollider.material.staticFriction = 0.6f;
+            playerCollider.material.frictionCombine = PhysicMaterialCombine.Average;
+        }
     }
 
     void OnDrawGizmosSelected()
