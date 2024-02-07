@@ -161,7 +161,7 @@ public class MikeMovement : MonoBehaviour
 
         //get jump input
         if(Input.GetKeyDown("space") && isGrounded && canJump) {
-            print("jump");
+            //print("jump");
             Jump();
         }
 
@@ -218,12 +218,12 @@ public class MikeMovement : MonoBehaviour
             //print("default movement");
 
         //slope movement
-        } else if(!isSliding && OnSlope() && !isWallRunning) {
+        } else if(!isSliding && OnSlope() && !isWallRunning && canJump) {
             rb.AddForce(GetSlopeMoveVector(movementVector, moveForce), ForceMode.Force);
             
             if(rb.velocity.y > 0) {
                 //downward force while on slope to keep player on it
-                //rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
+                rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
             //print("slope movement");
 
@@ -272,7 +272,7 @@ public class MikeMovement : MonoBehaviour
     void ClampSpeed(float minSpeed, float maxSpeed)
     {
         //limiting speed on slope (should turn off if jumping)
-        if(OnSlope() && canJump) {
+        if(OnSlope()) {
             if(rb.velocity.magnitude > maxSpeed + deltaV) {
                 if(maxSpeed + deltaV < minSpeed) {
                     rb.velocity = rb.velocity.normalized * minSpeed;
@@ -299,6 +299,8 @@ public class MikeMovement : MonoBehaviour
 
     void Jump()
     {
+        canJump = false;
+
         if(isSliding) {
             ExitSlide();
         }
@@ -306,7 +308,7 @@ public class MikeMovement : MonoBehaviour
         gravityScalar = airGravityScale;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        canJump = false;
+        //print("jump force added");
     }
 
     void StartSlide()
@@ -376,7 +378,7 @@ public class MikeMovement : MonoBehaviour
 
             if(rb.velocity.magnitude < minWalkSpeed) {
                 ApplyMaterial("normal");
-                print("normal physics mat");
+                //print("normal physics mat");
             }
         }
     }
