@@ -221,9 +221,9 @@ public class MikeMovement : MonoBehaviour
         } else if(!isSliding && OnSlope() && !isWallRunning && canJump) {
             rb.AddForce(GetSlopeMoveVector(movementVector, moveForce), ForceMode.Force);
             
-            if(rb.velocity.y > 0) {
+            if(rb.velocity.y > 3) {
                 //downward force while on slope to keep player on it
-                rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
+                //rb.AddForce(-slopeHit.normal * 80f, ForceMode.Force);
             }
             //print("slope movement");
 
