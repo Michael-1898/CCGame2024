@@ -1,0 +1,17 @@
+# Blender MTL File: 'zbrush.blend'
+# Material Count: 1
+
+newmtl Материал
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.113657 0.113657 0.113657
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\Новая папка\\Материал_Normal_DirectX.png
+map_Ke D:\\Новая папка\\Материал_Emissive.png
+map_Ns D:\\Новая папка\\Материал_Roughness.png
+map_d D:\\Новая папка\\Материал_Opacity.png
+refl D:\\Новая папка\\Материал_Metallic.png
