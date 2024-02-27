@@ -10,12 +10,38 @@ public class randBridgeFall : MonoBehaviour
     private int i;
     private int e;
     // Start is called before the first frame update
-    void Start()
-    {
-        buildingsChunks = GameObject.FindGameObjectsWithTag("BridgePieces");
 
-        StartCoroutine(fall());
-        
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Checkpoint1")
+        {
+            buildingsChunks = GameObject.FindGameObjectsWithTag("BridgePieces1");
+
+            StartCoroutine(fall());
+        }
+
+        if (col.tag == "Checkpoint2")
+        {
+            buildingsChunks = GameObject.FindGameObjectsWithTag("BridgePieces2");
+
+            StartCoroutine(fall());
+        }
+
+        if (col.tag == "Checkpoint3")
+        {
+            buildingsChunks = GameObject.FindGameObjectsWithTag("BridgePieces3");
+
+            StartCoroutine(fall());
+        }
+
+        if (col.tag == "Checkpoint4")
+        {
+            buildingsChunks = GameObject.FindGameObjectsWithTag("BridgePieces4");
+
+            StartCoroutine(fall());
+        }
+
 
     }
 

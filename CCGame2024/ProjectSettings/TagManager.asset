@@ -11,6 +11,10 @@ TagManager:
   - Key
   - KeyKeep
   - BridgePieces
+  - BridgePieces1
+  - BridgePieces2
+  - BridgePieces3
+  - BridgePieces4
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,8 @@ public class respawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = BridgeCheckpoint.checkpointPos;
+        transform.eulerAngles = BridgeCheckpoint.checkpointRot;
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class respawn : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
 
-        if (col.tag == "Player")
+        if (col.tag == "Respawn")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
