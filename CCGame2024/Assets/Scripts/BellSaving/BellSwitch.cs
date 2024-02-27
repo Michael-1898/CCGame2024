@@ -25,6 +25,8 @@ public class BellSwitch : MonoBehaviour
         PlayerPrefs.SetFloat("xDiff", gasStation.transform.position.x - player.transform.position.x);
         PlayerPrefs.SetFloat("yDiff", gasStation.transform.position.y - player.transform.position.y);
         PlayerPrefs.SetFloat("zDiff", gasStation.transform.position.z - player.transform.position.z);
+        PlayerPrefs.SetFloat("xCameraAngle", player.transform.GetChild(0).transform.GetChild(0).transform.rotation.x);
+        PlayerPrefs.SetFloat("yPlayerAngle", player.transform.rotation.y);
     }
 }   
 
