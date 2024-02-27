@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1.01
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
@@ -6709,22 +6709,52 @@ PrefabInstance:
     - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.102
+      value: -0.101999976
       objectReference: {fileID: 0}
     - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.026
+      value: 0.026000204
       objectReference: {fileID: 0}
     - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.004
+      value: -0.003999895
       objectReference: {fileID: 0}
-    - target: {fileID: 8377680231157425838, guid: 6d52314812f88884895f6dd19aa92445,
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
         type: 3}
-      propertyPath: m_Lightmapping
-      value: 2
+      propertyPath: m_LocalRotation.w
+      value: 0.56891507
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.69663143
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.23190264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.37048814
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 38.376003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 95.72101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730746074000378574, guid: 6d52314812f88884895f6dd19aa92445,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 108.22001
       objectReference: {fileID: 0}
     - target: {fileID: 8377680231157425838, guid: 6d52314812f88884895f6dd19aa92445,
         type: 3}
