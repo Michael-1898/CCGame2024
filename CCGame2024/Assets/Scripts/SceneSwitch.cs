@@ -23,14 +23,15 @@ public class SceneSwitch : MonoBehaviour
 
     public void switchScene(int transitionIndex)
     {
+        print("switch");
         StartCoroutine(FadeOut());
+        
     }
 
     void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            print("apple");
             StartCoroutine(FadeOut());
         }
     }
