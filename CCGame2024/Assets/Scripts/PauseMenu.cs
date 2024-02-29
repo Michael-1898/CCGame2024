@@ -17,6 +17,11 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown("escape"))
         {
             panel.SetActive(true);
-        } 
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        if(!panel.activeSelf) {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
