@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2865356}
   m_Layer: 9
   m_Name: plankGroup (1)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 5186249366462942325, guid: 117361f6ecff44015ba74c7b552921fb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5186249366462942325, guid: 117361f6ecff44015ba74c7b552921fb,
         type: 3}
@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 36479072}
   m_Layer: 9
   m_Name: plankGroup
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 38146427}
   m_Layer: 9
   m_Name: plankGroup (6)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1238,7 +1238,7 @@ GameObject:
   - component: {fileID: 45209999}
   m_Layer: 9
   m_Name: plankGroup (5)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1382,7 +1382,7 @@ GameObject:
   - component: {fileID: 53442545}
   m_Layer: 9
   m_Name: plankGroup (2)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 55392278}
   m_Layer: 9
   m_Name: plankGroup (1)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 62143318}
   m_Layer: 9
   m_Name: plankGroup (12)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1656,7 +1656,7 @@ GameObject:
   - component: {fileID: 64040112}
   m_Layer: 9
   m_Name: plankGroup (3)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1721,7 +1721,7 @@ GameObject:
   - component: {fileID: 72966142}
   m_Layer: 9
   m_Name: plankGroup (15)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1786,7 +1786,7 @@ GameObject:
   - component: {fileID: 73348439}
   m_Layer: 9
   m_Name: plankGroup (20)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2246,7 +2246,7 @@ GameObject:
   - component: {fileID: 125511217}
   m_Layer: 9
   m_Name: plankGroup (14)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2548,7 +2548,7 @@ GameObject:
   - component: {fileID: 133637981}
   m_Layer: 9
   m_Name: plankGroup (8)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2613,7 +2613,7 @@ GameObject:
   - component: {fileID: 143809755}
   m_Layer: 9
   m_Name: plankGroup (21)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2994,7 +2994,7 @@ GameObject:
   - component: {fileID: 164192380}
   m_Layer: 9
   m_Name: plankGroup (8)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3283,90 +3283,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170491016}
   m_Mesh: {fileID: -2432090755550338912, guid: 77fc2f07498ba544ba97963b3f772438, type: 3}
---- !u!1001 &170840595
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7031803454360691714, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_Name
-      value: BridgeCheckpoint (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 34.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 46.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f6912c77c1ff646a8bd6641390a81f93, type: 3}
 --- !u!1 &172606162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,7 +3296,7 @@ GameObject:
   - component: {fileID: 172606164}
   m_Layer: 9
   m_Name: plankGroup (4)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3682,7 +3598,7 @@ GameObject:
   - component: {fileID: 199438566}
   m_Layer: 9
   m_Name: plankGroup (2)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3747,7 +3663,7 @@ GameObject:
   - component: {fileID: 211841168}
   m_Layer: 9
   m_Name: plankGroup
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4681,7 +4597,7 @@ GameObject:
   - component: {fileID: 272921519}
   m_Layer: 9
   m_Name: plankGroup (7)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4983,7 +4899,7 @@ GameObject:
   - component: {fileID: 282540567}
   m_Layer: 9
   m_Name: plankGroup (17)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5048,7 +4964,7 @@ GameObject:
   - component: {fileID: 284840476}
   m_Layer: 9
   m_Name: plankGroup (13)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5192,7 +5108,7 @@ GameObject:
   - component: {fileID: 318115673}
   m_Layer: 9
   m_Name: plankGroup (5)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5731,7 +5647,7 @@ GameObject:
   - component: {fileID: 364863194}
   m_Layer: 9
   m_Name: plankGroup (4)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5796,7 +5712,7 @@ GameObject:
   - component: {fileID: 366245116}
   m_Layer: 9
   m_Name: plankGroup (11)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6019,7 +5935,7 @@ GameObject:
   - component: {fileID: 377033531}
   m_Layer: 9
   m_Name: plankGroup (19)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6084,7 +6000,7 @@ GameObject:
   - component: {fileID: 377581320}
   m_Layer: 9
   m_Name: plankGroup (18)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6148,7 +6064,7 @@ GameObject:
   - component: {fileID: 383115744}
   m_Layer: 0
   m_Name: Planks (1)
-  m_TagString: BridgePieces2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6200,7 +6116,7 @@ Transform:
   - {fileID: 849342206}
   - {fileID: 933441538}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &391561951
 GameObject:
@@ -7005,7 +6921,7 @@ GameObject:
   - component: {fileID: 430875266}
   m_Layer: 9
   m_Name: plankGroup (3)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7070,7 +6986,7 @@ GameObject:
   - component: {fileID: 432433325}
   m_Layer: 9
   m_Name: plankGroup (15)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7293,7 +7209,7 @@ GameObject:
   - component: {fileID: 438650575}
   m_Layer: 9
   m_Name: plankGroup (7)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7358,7 +7274,7 @@ GameObject:
   - component: {fileID: 443597484}
   m_Layer: 9
   m_Name: plankGroup (15)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7581,7 +7497,7 @@ GameObject:
   - component: {fileID: 451713217}
   m_Layer: 9
   m_Name: plankGroup (2)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7883,7 +7799,7 @@ GameObject:
   - component: {fileID: 472867413}
   m_Layer: 9
   m_Name: plankGroup (12)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8027,7 +7943,7 @@ Transform:
   m_LocalScale: {x: 0.5000005, y: 0.4999999, z: 0.8200989}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &479862322
 GameObject:
@@ -8358,7 +8274,7 @@ Transform:
   m_LocalScale: {x: 2.7090328, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522172572
 GameObject:
@@ -8768,7 +8684,7 @@ Transform:
   m_LocalScale: {x: 0.5000005, y: 0.4999999, z: 0.8200989}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &532228464
 GameObject:
@@ -8783,7 +8699,7 @@ GameObject:
   - component: {fileID: 532228466}
   m_Layer: 9
   m_Name: plankGroup (2)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8927,7 +8843,7 @@ GameObject:
   - component: {fileID: 535246691}
   m_Layer: 9
   m_Name: plankGroup (6)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9466,7 +9382,7 @@ GameObject:
   - component: {fileID: 573510631}
   m_Layer: 9
   m_Name: plankGroup (19)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9531,7 +9447,7 @@ GameObject:
   - component: {fileID: 577216039}
   m_Layer: 9
   m_Name: plankGroup (6)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10228,7 +10144,7 @@ GameObject:
   - component: {fileID: 613965465}
   m_Layer: 9
   m_Name: plankGroup (5)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10293,7 +10209,7 @@ GameObject:
   - component: {fileID: 621082026}
   m_Layer: 9
   m_Name: plankGroup (4)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10437,7 +10353,7 @@ GameObject:
   - component: {fileID: 625804096}
   m_Layer: 9
   m_Name: plankGroup (3)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10818,7 +10734,7 @@ GameObject:
   - component: {fileID: 657462042}
   m_Layer: 9
   m_Name: plankGroup (19)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11107,24 +11023,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674104070}
   m_Mesh: {fileID: -2432090755550338912, guid: 77fc2f07498ba544ba97963b3f772438, type: 3}
---- !u!1 &676578548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1392926919705411863, guid: 9ad1c5457f2e4954e9509ac81d20155c,
-    type: 3}
-  m_PrefabInstance: {fileID: 280161959}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &676578549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676578548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e4a483f6de90b941a7821d4942c16f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &680495930
 GameObject:
   m_ObjectHideFlags: 0
@@ -11612,7 +11510,7 @@ GameObject:
   - component: {fileID: 721914685}
   m_Layer: 9
   m_Name: plankGroup (15)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11756,7 +11654,7 @@ GameObject:
   - component: {fileID: 736450011}
   m_Layer: 9
   m_Name: plankGroup (9)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13559,7 +13457,7 @@ GameObject:
   - component: {fileID: 826556407}
   m_Layer: 9
   m_Name: plankGroup (3)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13703,7 +13601,7 @@ GameObject:
   - component: {fileID: 839923204}
   m_Layer: 9
   m_Name: plankGroup (16)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14005,7 +13903,7 @@ GameObject:
   - component: {fileID: 847320135}
   m_Layer: 9
   m_Name: plankGroup (14)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14070,7 +13968,7 @@ GameObject:
   - component: {fileID: 849342207}
   m_Layer: 9
   m_Name: plankGroup (20)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14530,7 +14428,7 @@ GameObject:
   - component: {fileID: 897972501}
   m_Layer: 9
   m_Name: plankGroup (21)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14832,7 +14730,7 @@ GameObject:
   - component: {fileID: 915175135}
   m_Layer: 9
   m_Name: plankGroup (13)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14963,90 +14861,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918498468}
   m_Mesh: {fileID: -2432090755550338912, guid: 77fc2f07498ba544ba97963b3f772438, type: 3}
---- !u!1001 &918970852
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7031803454360691714, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_Name
-      value: BridgeCheckpoint (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 46.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f6912c77c1ff646a8bd6641390a81f93, type: 3}
 --- !u!1 &928065860
 GameObject:
   m_ObjectHideFlags: 0
@@ -15139,7 +14953,7 @@ GameObject:
   - component: {fileID: 928202376}
   m_Layer: 9
   m_Name: plankGroup (12)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15283,7 +15097,7 @@ GameObject:
   - component: {fileID: 933441539}
   m_Layer: 9
   m_Name: plankGroup (21)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15427,7 +15241,7 @@ Transform:
   m_LocalScale: {x: 0.5000005, y: 0.4999999, z: 0.8200989}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952423646
 GameObject:
@@ -15442,7 +15256,7 @@ GameObject:
   - component: {fileID: 952423648}
   m_Layer: 9
   m_Name: plankGroup (1)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15823,7 +15637,7 @@ GameObject:
   - component: {fileID: 974034684}
   m_Layer: 9
   m_Name: plankGroup (11)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16045,7 +15859,7 @@ GameObject:
   - component: {fileID: 982781616}
   m_Layer: 0
   m_Name: Planks (3)
-  m_TagString: BridgePieces4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16097,7 +15911,7 @@ Transform:
   - {fileID: 73348438}
   - {fileID: 143809754}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &999464282
 GameObject:
@@ -16665,7 +16479,7 @@ GameObject:
   - component: {fileID: 1015392769}
   m_Layer: 9
   m_Name: plankGroup (19)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16966,7 +16780,7 @@ GameObject:
   - component: {fileID: 1029005535}
   m_Layer: 9
   m_Name: plankGroup (7)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17031,7 +16845,7 @@ GameObject:
   - component: {fileID: 1035583577}
   m_Layer: 9
   m_Name: plankGroup (21)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17649,7 +17463,7 @@ GameObject:
   - component: {fileID: 1071490201}
   m_Layer: 9
   m_Name: plankGroup (9)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18030,7 +17844,7 @@ GameObject:
   - component: {fileID: 1101122089}
   m_Layer: 9
   m_Name: plankGroup (14)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18253,7 +18067,7 @@ GameObject:
   - component: {fileID: 1115056730}
   m_Layer: 9
   m_Name: plankGroup (10)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18555,7 +18369,7 @@ GameObject:
   - component: {fileID: 1130252672}
   m_Layer: 9
   m_Name: plankGroup (8)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18778,7 +18592,7 @@ GameObject:
   - component: {fileID: 1135238768}
   m_Layer: 9
   m_Name: plankGroup (10)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19079,7 +18893,7 @@ GameObject:
   - component: {fileID: 1170323649}
   m_Layer: 0
   m_Name: Planks (2)
-  m_TagString: BridgePieces3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19131,7 +18945,7 @@ Transform:
   - {fileID: 1712972827}
   - {fileID: 897972500}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1178914648
 GameObject:
@@ -20568,7 +20382,7 @@ GameObject:
   - component: {fileID: 1286625012}
   m_Layer: 9
   m_Name: plankGroup (13)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21502,7 +21316,7 @@ GameObject:
   - component: {fileID: 1359042532}
   m_Layer: 9
   m_Name: plankGroup (5)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21804,7 +21618,7 @@ GameObject:
   - component: {fileID: 1378823604}
   m_Layer: 9
   m_Name: plankGroup (11)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22185,7 +21999,7 @@ GameObject:
   - component: {fileID: 1407193728}
   m_Layer: 9
   m_Name: plankGroup (9)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22564,7 +22378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1434496118
 GameObject:
@@ -22658,7 +22472,7 @@ GameObject:
   - component: {fileID: 1436184797}
   m_Layer: 9
   m_Name: plankGroup (17)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22880,7 +22694,7 @@ GameObject:
   - component: {fileID: 1446352247}
   m_Layer: 9
   m_Name: plankGroup (18)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23576,7 +23390,7 @@ GameObject:
   - component: {fileID: 1498697721}
   m_Layer: 0
   m_Name: Planks
-  m_TagString: BridgePieces1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23628,92 +23442,8 @@ Transform:
   - {fileID: 1547415129}
   - {fileID: 1035583576}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1499339957
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7031803454360691714, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_Name
-      value: BridgeCheckpoint (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 35.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f6912c77c1ff646a8bd6641390a81f93, type: 3}
 --- !u!1 &1502208246
 GameObject:
   m_ObjectHideFlags: 0
@@ -23727,7 +23457,7 @@ GameObject:
   - component: {fileID: 1502208248}
   m_Layer: 9
   m_Name: plankGroup (10)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24266,7 +23996,7 @@ GameObject:
   - component: {fileID: 1547415130}
   m_Layer: 9
   m_Name: plankGroup (20)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24489,7 +24219,7 @@ GameObject:
   - component: {fileID: 1556986460}
   m_Layer: 9
   m_Name: plankGroup
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24633,7 +24363,7 @@ GameObject:
   - component: {fileID: 1591953841}
   m_Layer: 9
   m_Name: plankGroup (7)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25014,7 +24744,7 @@ GameObject:
   - component: {fileID: 1619907258}
   m_Layer: 9
   m_Name: plankGroup (9)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25632,7 +25362,7 @@ GameObject:
   - component: {fileID: 1661022013}
   m_Layer: 9
   m_Name: plankGroup (12)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25697,7 +25427,7 @@ GameObject:
   - component: {fileID: 1669981594}
   m_Layer: 9
   m_Name: plankGroup
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25764,7 +25494,7 @@ PrefabInstance:
     - target: {fileID: 1187977861537986382, guid: 6d4f54b23010a46688a05f301967ead7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1187977861537986382, guid: 6d4f54b23010a46688a05f301967ead7,
         type: 3}
@@ -25831,7 +25561,7 @@ GameObject:
   - component: {fileID: 1679064420}
   m_Layer: 9
   m_Name: plankGroup (16)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26133,7 +25863,7 @@ GameObject:
   - component: {fileID: 1703743530}
   m_Layer: 9
   m_Name: plankGroup (8)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26277,7 +26007,7 @@ GameObject:
   - component: {fileID: 1712972828}
   m_Layer: 9
   m_Name: plankGroup (20)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27444,7 +27174,7 @@ GameObject:
   - component: {fileID: 1777859744}
   m_Layer: 9
   m_Name: plankGroup (16)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28773,7 +28503,7 @@ GameObject:
   - component: {fileID: 1858705125}
   m_Layer: 9
   m_Name: plankGroup (17)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29154,7 +28884,7 @@ GameObject:
   - component: {fileID: 1881364820}
   m_Layer: 9
   m_Name: plankGroup (17)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29298,7 +29028,7 @@ GameObject:
   - component: {fileID: 1885039047}
   m_Layer: 9
   m_Name: plankGroup (4)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29442,7 +29172,7 @@ GameObject:
   - component: {fileID: 1891500459}
   m_Layer: 9
   m_Name: plankGroup (14)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29586,7 +29316,7 @@ GameObject:
   - component: {fileID: 1898449638}
   m_Layer: 9
   m_Name: plankGroup (10)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29651,7 +29381,7 @@ GameObject:
   - component: {fileID: 1901678982}
   m_Layer: 9
   m_Name: plankGroup (6)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30032,7 +29762,7 @@ GameObject:
   - component: {fileID: 1923302292}
   m_Layer: 9
   m_Name: plankGroup (13)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30255,7 +29985,7 @@ GameObject:
   - component: {fileID: 1927072766}
   m_Layer: 9
   m_Name: plankGroup (18)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31106,7 +30836,7 @@ GameObject:
   - component: {fileID: 1969744050}
   m_Layer: 9
   m_Name: plankGroup (16)
-  m_TagString: BridgePieces3
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31250,7 +30980,7 @@ Transform:
   m_LocalScale: {x: 1.0000005, y: 0.9999997, z: 3.3338351}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1970991171
 GameObject:
@@ -31805,90 +31535,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985938777}
   m_Mesh: {fileID: -2432090755550338912, guid: 77fc2f07498ba544ba97963b3f772438, type: 3}
---- !u!1001 &1990916930
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7031803454360691714, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_Name
-      value: BridgeCheckpoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679846358950474662, guid: f6912c77c1ff646a8bd6641390a81f93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f6912c77c1ff646a8bd6641390a81f93, type: 3}
 --- !u!1 &1995424332
 GameObject:
   m_ObjectHideFlags: 0
@@ -32297,7 +31943,7 @@ GameObject:
   - component: {fileID: 2048132287}
   m_Layer: 9
   m_Name: plankGroup (11)
-  m_TagString: BridgePieces1
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32994,7 +32640,7 @@ Transform:
   m_LocalScale: {x: 0.5000005, y: 0.4999999, z: 0.8200989}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2081111462
 GameObject:
@@ -33562,7 +33208,7 @@ GameObject:
   - component: {fileID: 2113492544}
   m_Layer: 9
   m_Name: plankGroup (1)
-  m_TagString: BridgePieces4
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33785,7 +33431,7 @@ GameObject:
   - component: {fileID: 2128178585}
   m_Layer: 9
   m_Name: plankGroup (18)
-  m_TagString: BridgePieces2
+  m_TagString: BridgePieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34373,11 +34019,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7541492967820656068, guid: 2e1445ea7fa618e428771e7e571a1c65,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7541492967820656071, guid: 2e1445ea7fa618e428771e7e571a1c65,
         type: 3}
       propertyPath: m_RootOrder
@@ -34452,11 +34093,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: respawnField
-      objectReference: {fileID: 0}
-    - target: {fileID: 7541492967820656074, guid: 2e1445ea7fa618e428771e7e571a1c65,
-        type: 3}
-      propertyPath: m_TagString
-      value: Respawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e1445ea7fa618e428771e7e571a1c65, type: 3}
