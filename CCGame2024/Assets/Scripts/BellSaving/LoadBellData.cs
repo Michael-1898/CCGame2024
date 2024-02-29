@@ -17,7 +17,14 @@ public class LoadBellData : MonoBehaviour
     {
         transform.position = new Vector3(gasStation.transform.position.x - PlayerPrefs.GetFloat("xDiff"), gasStation.transform.position.y - PlayerPrefs.GetFloat("yDiff"), gasStation.transform.position.z - PlayerPrefs.GetFloat("zDiff"));
         transform.RotateAround(gasStation.transform.position, Vector3.up, 90);
-        transform.Rotate(0f, PlayerPrefs.GetFloat("yPlayerAngle"), 0f, Space.Self);
-        Camera.transform.Rotate(PlayerPrefs.GetFloat("xCameraAngle"), 0f, 0f, Space.Self);
+        print("Pl: " + PlayerPrefs.GetFloat("yPlayerAngle"));
+        print("C1: " + PlayerPrefs.GetFloat("xCameraAngle"));
+        //transform.Rotate(0f, PlayerPrefs.GetFloat("yPlayerAngle"), 0f, Space.World);
+        //Quaternion rotation = 
+        //GetComponent<Rigidbody>().MoveRotation(rotation);
+        //transform.rotation = Quaternion.Euler(0, PlayerPrefs.GetFloat("yPlayerAngle"), 0);
+        //print("y rotation:" + transform.rotation.y);
+        transform.rotation = Quaternion.Euler(0, PlayerPrefs.GetFloat("yPlayerAngle"), 0);
+        Camera.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("xCameraAngle"), 0f, 0f);
     }
 }
