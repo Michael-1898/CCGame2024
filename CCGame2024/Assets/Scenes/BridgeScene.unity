@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5186249366016939798, guid: 117361f6ecff44015ba74c7b552921fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5186249366462942321, guid: 117361f6ecff44015ba74c7b552921fb,
         type: 3}
       propertyPath: m_Name
@@ -2593,6 +2598,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransition
       objectReference: {fileID: 0}
+    - target: {fileID: 6937083766914692221, guid: 1cd5edfc70501a44cb31ef565fffe88b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 54f90128ce6254a468963078e104fd71, type: 2}
     - target: {fileID: 6937083766914692223, guid: 1cd5edfc70501a44cb31ef565fffe88b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2600,13 +2610,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6937083766914692223, guid: 1cd5edfc70501a44cb31ef565fffe88b,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.7599554
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937083766914692223, guid: 1cd5edfc70501a44cb31ef565fffe88b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.505953
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937083766914692223, guid: 1cd5edfc70501a44cb31ef565fffe88b,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.32
+      value: 2.468
       objectReference: {fileID: 0}
     - target: {fileID: 6937083766914692223, guid: 1cd5edfc70501a44cb31ef565fffe88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.29
+      value: 5.043
       objectReference: {fileID: 0}
     - target: {fileID: 6937083766914692223, guid: 1cd5edfc70501a44cb31ef565fffe88b,
         type: 3}
