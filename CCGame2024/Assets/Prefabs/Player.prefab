@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 112
   rb: {fileID: 1392926919705411862}
-  maxWalkSpeed: 9
+  maxWalkSpeed: 7.5
   minWalkSpeed: 6
   maxSlopeAngle: 50
   groundDrag: 5
