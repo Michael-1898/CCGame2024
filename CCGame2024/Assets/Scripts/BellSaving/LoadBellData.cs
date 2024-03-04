@@ -15,7 +15,7 @@ public class LoadBellData : MonoBehaviour
 
     void LoadLocation()
     {
-        var mouse = Mouse.current;
+        //var mouse = Mouse.current;
         transform.position = new Vector3(gasStation.transform.position.x - PlayerPrefs.GetFloat("xDiff"), gasStation.transform.position.y - PlayerPrefs.GetFloat("yDiff"), gasStation.transform.position.z - PlayerPrefs.GetFloat("zDiff"));
         transform.RotateAround(gasStation.transform.position, Vector3.up, 90);
         //transform.Rotate(0f, PlayerPrefs.GetFloat("yPlayerAngle"), 0f, Space.World);
@@ -28,7 +28,7 @@ public class LoadBellData : MonoBehaviour
 
         //Camera.transform.localEulerAngles = new Vector3(PlayerPrefs.GetFloat("xLook"), 0f, 0f);
         //transform.eulerAngles = new Vector3(0f, PlayerPrefs.GetFloat("yLook"), 0f);
-        mouse.current.WarpCursorPosition(new Vector2(PlayerPrefs.GetFloat("xLook"), PlayerPrefs.GetFloat("yLook")));
+        //mouse.current.WarpCursorPosition(new Vector2(PlayerPrefs.GetFloat("xLook"), PlayerPrefs.GetFloat("yLook")));
         print("Pl: " + PlayerPrefs.GetFloat("yLook"));
         print("C1: " + PlayerPrefs.GetFloat("xLook"));
     }
