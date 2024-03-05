@@ -15,30 +15,6 @@ public class CutsceneScript : MonoBehaviour
         StartCoroutine(Cutscene());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //initial blink/fade in
-        // StartCoroutine(Wait(1f));
-        // transform.position = point1.transform.position;
-        // StartCoroutine(Blink());
-        // transform.position = point2.transform.position;
-        // StartCoroutine(Blink());
-    }
-
-    IEnumerator Blink()
-    {
-        fade.SetActive(true);
-        anim.SetTrigger("fadeOut");
-        yield return new WaitForSeconds(1);
-        anim.SetTrigger("fadeIn");
-    }
-
-    IEnumerator Wait(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-    }
-
     IEnumerator Cutscene() {
         yield return new WaitForSeconds(1.75f);
 
@@ -58,5 +34,10 @@ public class CutsceneScript : MonoBehaviour
         //rotate player correctly
         transform.Rotate(0, 185, 90);
         anim.SetTrigger("fadeIn");
+        yield return new WaitForSeconds(1.75f);
+
+        //fadeout and switch scene
+        anim.SetTrigger("fadeOut");
+        yield return new WaitForSeconds(1);
     }
 }
