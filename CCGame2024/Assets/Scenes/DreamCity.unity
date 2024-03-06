@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0033465722, g: 0.00005812904, b: 0.06002011, a: 1}
+  m_IndirectSpecularColor: {r: 0.0033502802, g: 0.00005816156, b: 0.060081117, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7722,6 +7722,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1383682926}
     m_Modifications:
+    - target: {fileID: 5186249366016939799, guid: 117361f6ecff44015ba74c7b552921fb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.0000305
+      objectReference: {fileID: 0}
     - target: {fileID: 5186249366462942321, guid: 117361f6ecff44015ba74c7b552921fb,
         type: 3}
       propertyPath: m_Name
@@ -19921,7 +19926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1383682926
 Transform:
   m_ObjectHideFlags: 0
@@ -30932,6 +30937,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: buildingnoStair (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1560974704604596114, guid: d0a435458c07948cdaafd3de3be848bc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2225449560814361896, guid: d0a435458c07948cdaafd3de3be848bc,
         type: 3}
       propertyPath: m_RootOrder
@@ -30996,6 +31006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504256854079356747, guid: d0a435458c07948cdaafd3de3be848bc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a435458c07948cdaafd3de3be848bc, type: 3}
