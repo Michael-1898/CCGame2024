@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BridgeScene2.unity
     guid: f5de029079c8f514cae96060c1d4e80f
+  - enabled: 1
+    path: Assets/Scenes/BridgeScene3.unity
+    guid: e8746c956520ae14589a2cd274da32de
   m_configObjects: {}

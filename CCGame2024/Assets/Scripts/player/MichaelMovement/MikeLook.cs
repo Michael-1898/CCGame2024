@@ -27,6 +27,10 @@ public class MikeLook : MonoBehaviour
         XYRotation.y += mouseInput.x * sensitivities.x;
 
         XYRotation.x = Mathf.Clamp(XYRotation.x, -90f, 90f);
+
+        print("x: " + XYRotation.x);
+        print("y: " + XYRotation.y);
+
         playerCamera.localEulerAngles = new Vector3(XYRotation.x, 0f, 0f);
     }
 
