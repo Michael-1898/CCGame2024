@@ -224,8 +224,8 @@ MonoBehaviour:
   playerCam: {fileID: 1392926919010302687}
   maxSlideSpeed: 17
   slideFriction: 10
-  wallRunFriction: 4
-  wallFrictionSpeed: 7
+  wallRunFriction: 3
+  wallFrictionSpeed: 5
   wallRunGravity: 0.7
   wallRunForce: 100
   minJumpHeight: 2
