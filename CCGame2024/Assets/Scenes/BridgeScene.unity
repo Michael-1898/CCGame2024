@@ -2591,7 +2591,7 @@ PrefabInstance:
     - target: {fileID: 6937083766914692208, guid: 1cd5edfc70501a44cb31ef565fffe88b,
         type: 3}
       propertyPath: transitionToIndex
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6937083766914692219, guid: 1cd5edfc70501a44cb31ef565fffe88b,
         type: 3}
