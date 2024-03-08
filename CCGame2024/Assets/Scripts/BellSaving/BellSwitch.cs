@@ -23,17 +23,14 @@ public class BellSwitch : MonoBehaviour
     
     void SaveLocation()
     {
-        
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
         
         PlayerPrefs.SetFloat("xDiff", gasStation.transform.position.x - player.transform.position.x);
         PlayerPrefs.SetFloat("yDiff", gasStation.transform.position.y - player.transform.position.y);
         PlayerPrefs.SetFloat("zDiff", gasStation.transform.position.z - player.transform.position.z);
-       // PlayerPrefs.SetFloat("xCameraAngle", player.transform.GetChild(0).transform.GetChild(0).transform.localRotation.eulerAngles.x);
-       // PlayerPrefs.SetFloat("yPlayerAngle", player.transform.localRotation.eulerAngles.y);
-       PlayerPrefs.SetFloat("xLook", x);
-       PlayerPrefs.SetFloat("yLook", y);
+       
+        PlayerPrefs.SetFloat("xLook", player.GetComponent<MikeLook>().GetXRotation());
+        PlayerPrefs.SetFloat("yLook", player.GetComponent<MikeLook>().GetYRotation());
     }
-}   
-
+}
