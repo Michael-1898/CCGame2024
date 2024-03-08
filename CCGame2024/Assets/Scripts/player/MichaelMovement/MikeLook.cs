@@ -28,8 +28,8 @@ public class MikeLook : MonoBehaviour
 
         XYRotation.x = Mathf.Clamp(XYRotation.x, -90f, 90f);
 
-        print("x: " + XYRotation.x);
-        print("y: " + XYRotation.y);
+        //print("x: " + XYRotation.x);
+        //print("y: " + XYRotation.y);
 
         playerCamera.localEulerAngles = new Vector3(XYRotation.x, 0f, 0f);
     }
@@ -37,5 +37,25 @@ public class MikeLook : MonoBehaviour
     void LateUpdate()
     {
         transform.eulerAngles = new Vector3(0f, XYRotation.y, 0f);
+    }
+
+    public void SetXRotation(float rotation)
+    {
+        XYRotation.x = rotation;
+    }
+
+    public void SetYRotation(float rotation)
+    {
+        XYRotation.y = rotation;
+    }
+
+    public float GetXRotation()
+    {
+        return XYRotation.x;
+    }
+
+    public float GetYRotation()
+    {
+        return XYRotation.y;
     }
 }
