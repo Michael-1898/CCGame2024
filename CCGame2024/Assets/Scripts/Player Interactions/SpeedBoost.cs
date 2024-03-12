@@ -5,13 +5,18 @@ using UnityEngine;
 public class SpeedBoost : MonoBehaviour
 {
     [SerializeField] float deltaV;
+    MikeMovement moveScript;
+
+    void Start()
+    {
+        moveScript = GameObject.FindGameObjectWithTag("Player").GetComponent<MikeMovement>();
+    }
 
     void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("Player")) {
-            //col.gameObject.GetComponent<MikeMovement>().SendMessage("SpeedBoost", deltaV);
-            //SpeedBoost(deltaV);
-            print(col.gameObject);
+            moveScript.SpeedBoost(deltaV);
+            //print(col.gameObject);
         }
     }
 }

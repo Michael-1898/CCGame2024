@@ -587,6 +587,11 @@ public class MikeMovement : MonoBehaviour
     public void SpeedBoost(float newDeltaV)
     {
         deltaV = newDeltaV;
+        float tempK = 0.5f * rb.mass * (newDeltaV * newDeltaV);
+
+        //U = mgh : h = U/mg
+        float tempY = tempK / (rb.mass * 9.8f);
+        lastYPosition = currentYPosition + tempY;
     }
 
     void OnDrawGizmosSelected()
