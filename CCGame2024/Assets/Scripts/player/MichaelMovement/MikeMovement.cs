@@ -92,6 +92,7 @@ public class MikeMovement : MonoBehaviour
         [SerializeField] float wallrunCooldown;
         float lastWallRunSpeed;
         bool wallJumped = false;
+        [SerializeField] float wallJumpForce;
         string lastWallName;
         [SerializeField] float sameWallCooldown;
 
@@ -452,7 +453,7 @@ public class MikeMovement : MonoBehaviour
         //determine jump direction
         Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
         Vector3 wallJumpDirection = wallNormal + transform.up;
-        rb.AddForce(wallJumpDirection.normalized * jumpForce, ForceMode.Impulse);
+        rb.AddForce(wallJumpDirection.normalized * wallJumpForce, ForceMode.Impulse);
 
         //stop player from immedietely wallrunning again after jumping
         canWallRun = false;
@@ -581,6 +582,11 @@ public class MikeMovement : MonoBehaviour
             playerCollider.material.staticFriction = 0.6f;
             playerCollider.material.frictionCombine = PhysicMaterialCombine.Average;
         }
+    }
+
+    public void SpeedBoost(float newDeltaV)
+    {
+        deltaV = newDeltaV;
     }
 
     void OnDrawGizmosSelected()
