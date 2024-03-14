@@ -10,9 +10,14 @@ public class BellSwitch : MonoBehaviour
     
     [SerializeField] Animator fadeAnim;
 
+    bool clicked = false;
+
     void OnMouseDown()
     {
-        StartCoroutine(GasStationSwitch());
+        if(!clicked) {
+            clicked = true;
+            StartCoroutine(GasStationSwitch());
+        }
     }
 
     IEnumerator GasStationSwitch()
