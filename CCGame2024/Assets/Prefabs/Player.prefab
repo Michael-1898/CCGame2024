@@ -209,7 +209,7 @@ MonoBehaviour:
   moveForce: 112
   rb: {fileID: 1392926919705411862}
   maxWalkSpeed: 7
-  minWalkSpeed: 6
+  minWalkSpeed: 6.5
   maxSlopeAngle: 50
   groundDrag: 5
   playerCollider: {fileID: 5994456656345635643}
@@ -234,6 +234,7 @@ MonoBehaviour:
     m_Bits: 2560
   wallCheckDistance: 0.7
   wallrunCooldown: 0.2
+  wallJumpForce: 14
   sameWallCooldown: 1
   groundGravityScale: 3
   airGravityScale: 2

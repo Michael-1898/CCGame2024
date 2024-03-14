@@ -6,12 +6,20 @@ public class LoadBellData : MonoBehaviour
 {
     [SerializeField] GameObject gasStation;
     [SerializeField] GameObject Camera;
-
+    [SerializeField] Animator fadeAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         LoadLocation();
+        StartCoroutine(GasStationLoad());
+    }
+
+    IEnumerator GasStationLoad()
+    {
+        fadeAnim.SetTrigger("instaBlack");
+        yield return new WaitForSeconds(0.02f);
+        fadeAnim.SetTrigger("lightsOn");
     }
 
     void LoadLocation()

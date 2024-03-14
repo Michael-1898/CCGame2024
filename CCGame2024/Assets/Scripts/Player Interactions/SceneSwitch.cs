@@ -12,7 +12,7 @@ public class SceneSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fade.SetActive(false);
+        //fade.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class SceneSwitch : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        fade.SetActive(true);
+        //fade.SetActive(true);
         anim.SetTrigger("fadeOut");
         //buttonAnim.SetTrigger("buttonFadeIn");
         yield return new WaitForSeconds(1);
