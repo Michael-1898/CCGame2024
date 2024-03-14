@@ -18654,6 +18654,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 117361f6ecff44015ba74c7b552921fb, type: 3}
+--- !u!95 &630592532 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1705986226579641608, guid: 117361f6ecff44015ba74c7b552921fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 630592531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &632665748
 GameObject:
   m_ObjectHideFlags: 0
@@ -36192,7 +36198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1383682926
 Transform:
   m_ObjectHideFlags: 0
@@ -56498,6 +56504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gasStation: {fileID: 473481415}
   Camera: {fileID: 1619268740}
+  fadeAnim: {fileID: 630592532}
 --- !u!1 &1619268740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1392926919010302674, guid: 9ad1c5457f2e4954e9509ac81d20155c,

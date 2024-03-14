@@ -8,17 +8,34 @@ public class BellSwitch : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject gasStation;
     
+    [SerializeField] Animator fadeAnim;
 
     void OnMouseDown()
     {
+        StartCoroutine(GasStationSwitch());
+    }
+
+    IEnumerator GasStationSwitch()
+    {
+        //light fickering
+        fadeAnim.SetTrigger("lightsOut");
+        yield return new WaitForSeconds(0.5f);
+        fadeAnim.SetTrigger("lightsOn");
+        yield return new WaitForSeconds(1f);
+        fadeAnim.SetTrigger("lightsOut");
+        yield return new WaitForSeconds(0.2f);
+        fadeAnim.SetTrigger("lightsOn");
+        yield return new WaitForSeconds(0.2f);
+        fadeAnim.SetTrigger("lightsOut");
+        yield return new WaitForSeconds(0.25f);
+        fadeAnim.SetTrigger("lightsOn");
+        yield return new WaitForSeconds(0.2f);
+        fadeAnim.SetTrigger("lightsOut");
+        yield return new WaitForSeconds(0.07f);
+
         SaveLocation();
 
         SceneManager.LoadScene("DreamCity");
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
     
     void SaveLocation()
