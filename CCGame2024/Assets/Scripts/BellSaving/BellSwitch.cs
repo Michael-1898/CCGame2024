@@ -7,10 +7,21 @@ public class BellSwitch : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject gasStation;
+    [SerializeField] GameObject glow;
     
     [SerializeField] Animator fadeAnim;
 
     bool clicked = false;
+
+    void Start()
+    {
+        glow.SetActive(false);
+    }
+
+    void OnMouseOver()
+    {
+        glow.SetActive(true);
+    }
 
     void OnMouseDown()
     {
@@ -18,6 +29,11 @@ public class BellSwitch : MonoBehaviour
             clicked = true;
             StartCoroutine(GasStationSwitch());
         }
+    }
+
+    void OnMouseExit()
+    {
+        glow.SetActive(false);
     }
 
     IEnumerator GasStationSwitch()
