@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.000027464968, g: 0.0045252535, b: 0.00012134734,
+  m_IndirectSpecularColor: {r: 0.000027734832, g: 0.0045297067, b: 0.00012073259,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -11956,6 +11956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingsChunks: []
+  R: 0
+  G: 0
+  B: 255
 --- !u!4 &1512962641
 Transform:
   m_ObjectHideFlags: 0

@@ -15095,6 +15095,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingsChunks: []
+  R: 255
+  G: 0
+  B: 0
 --- !u!4 &1126925862
 Transform:
   m_ObjectHideFlags: 0

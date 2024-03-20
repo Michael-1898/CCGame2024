@@ -9,6 +9,10 @@ public class randBridgeFall : MonoBehaviour
     private float time;
     private int i;
     private int e;
+    [SerializeField] private int R;
+    [SerializeField] private int G;
+    [SerializeField] private int B;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +53,7 @@ public class randBridgeFall : MonoBehaviour
                 MeshRenderer[] mR = buildingsChunks[d].GetComponentsInChildren<MeshRenderer>();
                 for (int f = 0; f < 4; f++)
                 {
-                    mR[f].material.color = new Color(255, 0, 0);
+                    mR[f].material.color = new Color(R, G, B);
                 }
                 e++;
             }
