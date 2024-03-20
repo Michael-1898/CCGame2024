@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BridgeScene3.unity
     guid: e8746c956520ae14589a2cd274da32de
+  - enabled: 1
+    path: Assets/Scenes/Credits_Scene.unity
+    guid: 462afe314e45340c4a2bde5624fae5d6
   m_configObjects: {}
