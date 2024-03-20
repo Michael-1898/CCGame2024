@@ -177,13 +177,16 @@ public class MikeMovement : MonoBehaviour
             //new y pos
         }
         
-        /*else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
+        //toggle slide input:
+        /*
+        else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
             ExitSlide();
         } else if(isSliding && rb.velocity.magnitude < 1) { //if slide slows down enough
             ExitSlide();
             lastYPosition = transform.position.y;
             //new y pos
-        }*/
+        }
+        */
 
         //print(canWallRun);
 
@@ -344,6 +347,7 @@ public class MikeMovement : MonoBehaviour
     void ExitSlide()
     {
         isSliding = false;
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         playerModel.localScale = new Vector3(playerModel.localScale.x, 1f, playerModel.localScale.z);
         ApplyMaterial("normal");
     }
