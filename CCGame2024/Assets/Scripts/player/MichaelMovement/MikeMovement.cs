@@ -169,13 +169,21 @@ public class MikeMovement : MonoBehaviour
         //sliding input
         if(Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && !isSliding && rb.velocity.magnitude > 1) {
             StartSlide();
-        } else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
+        } else if(!Input.GetKey(KeyCode.LeftShift) && isSliding) { //if stops pressing, exit
+            ExitSlide();
+        } else if(isSliding && rb.velocity.magnitude < 1) { //if too slow, exit
+            ExitSlide();
+            lastYPosition = transform.position.y;
+            //new y pos
+        }
+        
+        /*else if(Input.GetKeyDown(KeyCode.LeftShift) && isSliding && rb.velocity.magnitude > 1) {
             ExitSlide();
         } else if(isSliding && rb.velocity.magnitude < 1) { //if slide slows down enough
             ExitSlide();
             lastYPosition = transform.position.y;
             //new y pos
-        }
+        }*/
 
         //print(canWallRun);
 
