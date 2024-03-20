@@ -56,7 +56,7 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
-    m_BakeResolution: 2
+    m_BakeResolution: 1
     m_AtlasSize: 512
     m_AO: 1
     m_AOMaxDistance: 1
@@ -6582,7 +6582,7 @@ Transform:
   m_LocalScale: {x: 60, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &182011527
 PrefabInstance:
@@ -31303,7 +31303,7 @@ Transform:
   - {fileID: 1929442279}
   - {fileID: 1407804427}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1071506626 stripped
 Transform:
@@ -37351,7 +37351,7 @@ Transform:
   - {fileID: 1577576743278915780}
   - {fileID: 1461596773}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1302141853 stripped
 Transform:
@@ -38049,7 +38049,7 @@ Transform:
   - {fileID: 2139510145}
   - {fileID: 128837064}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1407804426
 PrefabInstance:
@@ -43510,7 +43510,7 @@ Transform:
   m_LocalScale: {x: 60, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1457523191
 PrefabInstance:
@@ -58410,7 +58410,7 @@ Transform:
   m_LocalScale: {x: 60, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1647295365
 PrefabInstance:
@@ -68682,7 +68682,7 @@ Transform:
   - {fileID: 724485}
   - {fileID: 998257153}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1805277203
 PrefabInstance:
@@ -68823,7 +68823,7 @@ Transform:
   - {fileID: 1289461407}
   - {fileID: 8153934322116197343}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1846587931
 GameObject:
@@ -68984,7 +68984,7 @@ Transform:
   - {fileID: 2093946265}
   - {fileID: 900351910}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1880170763
 PrefabInstance:
