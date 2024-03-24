@@ -7,6 +7,8 @@ public class Checkpoint : MonoBehaviour
 
     Vector3 position;
     bool dieOnFall;
+    [SerializeField] Animator fadeAnim;
+    [SerializeField] MikeMovement moveScript;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +24,9 @@ public class Checkpoint : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        
         if (col.gameObject.tag == "Respawn" && dieOnFall == true)
         {
-            transform.position = position;
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            StartCoroutine(Respawn());
         }
     }
 
@@ -42,5 +42,22 @@ public class Checkpoint : MonoBehaviour
         {
             dieOnFall = false;
         }
+
+        if (col.gameObject.tag == "Respawn" && dieOnFall == true)
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    IEnumerator Respawn()
+    {
+        fadeAnim.SetTrigger("fadeOut");
+        yield return new WaitForSeconds(1);
+        moveScript.enabled = false;
+        transform.position = position;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        fadeAnim.SetTrigger("fadeIn");
+        yield return new WaitForSeconds(0.6f);
+        moveScript.enabled = true;
     }
 }

@@ -266,6 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3823bd26f846bb7468d9f93d58574848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeAnim: {fileID: 0}
+  moveScript: {fileID: 1392926919705411857}
 --- !u!1 &5205286852479631006
 GameObject:
   m_ObjectHideFlags: 0
