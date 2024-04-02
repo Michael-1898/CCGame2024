@@ -492,8 +492,8 @@ public class MikeMovement : MonoBehaviour
     void GroundCheck()
     {
         Collider[] groundColliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
-        print(groundColliders.Length);
-        print(isGrounded);
+        //print(groundColliders.Length);
+        //print(isGrounded);
         if(groundColliders.Length == 0 && isGrounded) {
             //in air
             isGrounded = false;
