@@ -12,14 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene.unity
     guid: 740dfc57461c5124897204810ec6025f
   - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: a1019b7337b7042459742ba3c2179db6
+  - enabled: 1
     path: Assets/Scenes/DreamCity.unity
     guid: 987b508843fa64d3993659b9d2456ac6
   - enabled: 1
     path: Assets/Scenes/BridgeScene.unity
     guid: 40076ad2d5a75e04dbb512b61a5e49cf
-  - enabled: 1
-    path: Assets/Scenes/IntroScene.unity
-    guid: a1019b7337b7042459742ba3c2179db6
   - enabled: 1
     path: Assets/Scenes/BridgeScene2.unity
     guid: f5de029079c8f514cae96060c1d4e80f
