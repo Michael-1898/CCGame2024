@@ -54,7 +54,7 @@ public class MikeMovement : MonoBehaviour
     [Header("Jump")]
         [SerializeField] float jumpForce;
         bool isGrounded;
-        Collider[] groundColliders;
+        //Collider[] groundColliders;
         [SerializeField] Transform groundCheck;
         [SerializeField] float groundCheckRadius;
         [SerializeField] LayerMask groundLayer;
@@ -126,6 +126,7 @@ public class MikeMovement : MonoBehaviour
 
         //ground check switches value of isGrounded and canJump variable
         GroundCheck();
+        //print(isGrounded);
 
         WallCheck();
 
@@ -215,6 +216,8 @@ public class MikeMovement : MonoBehaviour
         } else if(isSliding || isWallRunning) {
             ClampSpeed(0, maxSlideSpeed);
         }
+
+        //print("isSliding: " + isSliding);
     }
 
     void FixedUpdate()
@@ -350,6 +353,7 @@ public class MikeMovement : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         playerModel.localScale = new Vector3(playerModel.localScale.x, 1f, playerModel.localScale.z);
         ApplyMaterial("normal");
+        //print("exit slide");
     }
 
     void SlideMovement()
@@ -487,22 +491,27 @@ public class MikeMovement : MonoBehaviour
 
     void GroundCheck()
     {
-        groundColliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        Collider[] groundColliders = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        print(groundColliders.Length);
+        print(isGrounded);
         if(groundColliders.Length == 0 && isGrounded) {
             //in air
             isGrounded = false;
             gravityScalar = airGravityScale;
             //apply frictionless physics material
             ApplyMaterial("frictionless");
+            //print("air");
             StartCoroutine(CoyoteJump());
         } else if(groundColliders.Length != 0 && (!isGrounded || !canJump)) {
             //on ground
             isGrounded = true;
             canJump = true;
             gravityScalar = groundGravityScale;
+            //print("ground1");
             //apply default physics material
             if(!isSliding) {
                 ApplyMaterial("normal");
+                //print("ground2");
             }
 
             //for energy transfer
