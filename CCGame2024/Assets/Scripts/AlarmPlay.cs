@@ -12,6 +12,7 @@ public class AlarmPlay : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             audio.Play();
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
     }
